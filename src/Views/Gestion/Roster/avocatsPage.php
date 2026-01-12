@@ -147,7 +147,7 @@
 
         .roster-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
             animation: fadeInUp 0.8s ease 0.3s backwards;
@@ -426,143 +426,164 @@
                     <option value="0">Sans Consultation En Ligne</option>
                 </select>
             </div>
-        </div>
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number" id="totalCount">12</div>
-                <div class="stat-label">Avocats Disponibles</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="consultationCount">8</div>
-                <div class="stat-label">Consultations En Ligne</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="averageExperience">15</div>
-                <div class="stat-label">Années d'Expérience Moyenne</div>
+            <div class="card-actions">
+                    <a href="../Formulaires/DinamicCreate.php"><button class="btn btn-edit">Add avocat + </button></a>
             </div>
         </div>
 
-        <div class="roster-grid" id="rosterGrid"></div>
+        <div class="roster-grid">
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">MD</div>
+                    <div class="card-title-section">
+                        <h3>Marie Dupont</h3>
+                        <p>DROIT PÉNAL</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">12 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Paris</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">JM</div>
+                    <div class="card-title-section">
+                        <h3>Jean Martin</h3>
+                        <p>DROIT CIVIL</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">18 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Lyon</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">SB</div>
+                    <div class="card-title-section">
+                        <h3>Sophie Bernard</h3>
+                        <p>DROIT DE LA FAMILLE</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">10 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Marseille</span>
+                    </div>
+                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">PM</div>
+                    <div class="card-title-section">
+                        <h3>Pierre Moreau</h3>
+                        <p>DROIT DES AFFAIRES</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">20 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Paris</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">CL</div>
+                    <div class="card-title-section">
+                        <h3>Claire Laurent</h3>
+                        <p>DROIT PÉNAL</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">15 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Toulouse</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">TP</div>
+                    <div class="card-title-section">
+                        <h3>Thomas Petit</h3>
+                        <p>DROIT CIVIL</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">8 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Nice</span>
+                    </div>
+                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
 
         <div class="pagination" id="pagination"></div>
     </div>
-
-    <script>
-        const avocats = [
-            { id: 1, name: 'Marie Dupont', specialite: 'Droit_penal', consultation_en_ligne: 1, annees_dex: 12, ville: 'Paris' },
-            { id: 2, name: 'Jean Martin', specialite: 'civil', consultation_en_ligne: 1, annees_dex: 18, ville: 'Lyon' },
-            { id: 3, name: 'Sophie Bernard', specialite: 'famille', consultation_en_ligne: 0, annees_dex: 10, ville: 'Marseille' },
-            { id: 4, name: 'Pierre Moreau', specialite: 'affaires', consultation_en_ligne: 1, annees_dex: 20, ville: 'Paris' },
-            { id: 5, name: 'Claire Laurent', specialite: 'Droit_penal', consultation_en_ligne: 1, annees_dex: 15, ville: 'Toulouse' },
-            { id: 6, name: 'Thomas Petit', specialite: 'civil', consultation_en_ligne: 0, annees_dex: 8, ville: 'Nice' },
-            { id: 7, name: 'Nathalie Durand', specialite: 'famille', consultation_en_ligne: 1, annees_dex: 14, ville: 'Paris' },
-            { id: 8, name: 'Marc Leclerc', specialite: 'affaires', consultation_en_ligne: 1, annees_dex: 22, ville: 'Bordeaux' },
-            { id: 9, name: 'Julie Fontaine', specialite: 'Droit_penal', consultation_en_ligne: 1, annees_dex: 11, ville: 'Lille' },
-            { id: 10, name: 'David Renard', specialite: 'civil', consultation_en_ligne: 0, annees_dex: 16, ville: 'Paris' },
-            { id: 11, name: 'Isabelle Roy', specialite: 'famille', consultation_en_ligne: 1, annees_dex: 13, ville: 'Lyon' },
-            { id: 12, name: 'Nicolas Lefevre', specialite: 'affaires', consultation_en_ligne: 1, annees_dex: 19, ville: 'Paris' }
-        ];
-
-        let currentPage = 1;
-        const itemsPerPage = 6;
-        let filteredAvocats = [...avocats];
-
-        function updateStats() {
-            document.getElementById('totalCount').textContent = filteredAvocats.length;
-            const withConsultation = filteredAvocats.filter(a => a.consultation_en_ligne === 1).length;
-            document.getElementById('consultationCount').textContent = withConsultation;
-            const avgExp = Math.round(filteredAvocats.reduce((sum, a) => sum + a.annees_dex, 0) / filteredAvocats.length);
-            document.getElementById('averageExperience').textContent = avgExp;
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase();
-        }
-
-        function renderRoster() {
-            const grid = document.getElementById('rosterGrid');
-            grid.innerHTML = '';
-            
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageItems = filteredAvocats.slice(start, end);
-
-            pageItems.forEach(avocat => {
-                const card = document.createElement('div');
-                card.className = 'roster-card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="card-avatar">${getInitials(avocat.name)}</div>
-                        <div class="card-title-section">
-                            <h3>${avocat.name}</h3>
-                            <p>${avocat.specialite.replace('_', ' ').toUpperCase()}</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Expérience</span>
-                            <span class="detail-value">${avocat.annees_dex} ans</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Localisation</span>
-                            <span class="detail-value">${avocat.ville}</span>
-                        </div>
-                        <span class="consultation-badge ${avocat.consultation_en_ligne ? 'consultation-yes' : 'consultation-no'}">
-                            ${avocat.consultation_en_ligne ? '✓ Consultation En Ligne' : '✗ Non Disponible'}
-                        </span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-edit">Profil</button>
-                        <button class="btn btn-delete">Contacter</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            renderPagination();
-        }
-
-        function renderPagination() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            const totalPages = Math.ceil(filteredAvocats.length / itemsPerPage);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i;
-                btn.className = i === currentPage ? 'active' : '';
-                btn.onclick = () => {
-                    currentPage = i;
-                    renderRoster();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                pagination.appendChild(btn);
-            }
-        }
-
-        function filterAvocats() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const speciality = document.getElementById('specialityFilter').value;
-            const consultation = document.getElementById('consultationFilter').value;
-
-            filteredAvocats = avocats.filter(avocat => {
-                const matchSearch = avocat.name.toLowerCase().includes(searchTerm) || avocat.ville.toLowerCase().includes(searchTerm);
-                const matchSpeciality = !speciality || avocat.specialite === speciality;
-                const matchConsultation = consultation === '' || avocat.consultation_en_ligne.toString() === consultation;
-                return matchSearch && matchSpeciality && matchConsultation;
-            });
-
-            currentPage = 1;
-            updateStats();
-            renderRoster();
-        }
-
-        document.getElementById('searchInput').addEventListener('input', filterAvocats);
-        document.getElementById('specialityFilter').addEventListener('change', filterAvocats);
-        document.getElementById('consultationFilter').addEventListener('change', filterAvocats);
-
-        updateStats();
-        renderRoster();
-    </script>
 </body>
 </html>

@@ -147,7 +147,7 @@
 
         .roster-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
             margin-bottom: 40px;
             animation: fadeInUp 0.8s ease 0.3s backwards;
@@ -426,142 +426,165 @@
                     <option value="0">Sans Consultation En Ligne</option>
                 </select>
             </div>
-        </div>
-
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number" id="totalCount">10</div>
-                <div class="stat-label">Huissiers Disponibles</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="consultationCount">7</div>
-                <div class="stat-label">Consultations En Ligne</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="averageExperience">14</div>
-                <div class="stat-label">Années d'Expérience Moyenne</div>
+            <div class="card-actions">
+                    <a href=""><button class="btn btn-edit">Add huissier + </button></a>
             </div>
         </div>
 
-        <div class="roster-grid" id="rosterGrid"></div>
+
+        <div class="roster-grid">
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">AR</div>
+                    <div class="card-title-section">
+                        <h3>André Rousseau</h3>
+                        <p>SIGNIFICATION</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">16 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Paris</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">FM</div>
+                    <div class="card-title-section">
+                        <h3>Francine Michel</h3>
+                        <p>CONSTAT</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">12 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Marseille</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">GG</div>
+                    <div class="card-title-section">
+                        <h3>Gérard Gauthier</h3>
+                        <p>RECOUVREMENT</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">18 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Lyon</span>
+                    </div>
+                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">SM</div>
+                    <div class="card-title-section">
+                        <h3>Simone Marchand</h3>
+                        <p>EXPULSION</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">14 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Toulouse</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">TD</div>
+                    <div class="card-title-section">
+                        <h3>Thierry Deschamps</h3>
+                        <p>SIGNIFICATION</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">20 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Paris</span>
+                    </div>
+                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+
+            <div class="roster-card">
+                <div class="card-header">
+                    <div class="card-avatar">VL</div>
+                    <div class="card-title-section">
+                        <h3>Valérie Legrand</h3>
+                        <p>CONSTAT</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Expérience</span>
+                        <span class="detail-value">10 ans</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Localisation</span>
+                        <span class="detail-value">Nice</span>
+                    </div>
+                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
+                </div>
+                <div class="card-actions">
+                    <button class="btn btn-edit">Edit</button>
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </div>
+        </div>
 
         <div class="pagination" id="pagination"></div>
     </div>
-
-    <script>
-        const huissiers = [
-            { id: 1, name: 'André Rousseau', types_actes: 'Signification', consultation_en_ligne: 1, annees_dex: 16, ville: 'Paris' },
-            { id: 2, name: 'Francine Michel', types_actes: 'Constat', consultation_en_ligne: 1, annees_dex: 12, ville: 'Marseille' },
-            { id: 3, name: 'Gérard Gauthier', types_actes: 'Recouvrement', consultation_en_ligne: 0, annees_dex: 18, ville: 'Lyon' },
-            { id: 4, name: 'Simone Marchand', types_actes: 'Expulsion', consultation_en_ligne: 1, annees_dex: 14, ville: 'Toulouse' },
-            { id: 5, name: 'Thierry Deschamps', types_actes: 'Signification', consultation_en_ligne: 1, annees_dex: 20, ville: 'Paris' },
-            { id: 6, name: 'Valérie Legrand', types_actes: 'Constat', consultation_en_ligne: 0, annees_dex: 10, ville: 'Nice' },
-            { id: 7, name: 'Yves Leconte', types_actes: 'Recouvrement', consultation_en_ligne: 1, annees_dex: 15, ville: 'Bordeaux' },
-            { id: 8, name: 'Zoe Mallet', types_actes: 'Expulsion', consultation_en_ligne: 1, annees_dex: 13, ville: 'Lille' },
-            { id: 9, name: 'Armand Bonhomme', types_actes: 'Signification', consultation_en_ligne: 0, annees_dex: 17, ville: 'Paris' },
-            { id: 10, name: 'Béatrice Chartier', types_actes: 'Constat', consultation_en_ligne: 1, annees_dex: 11, ville: 'Nantes' }
-        ];
-
-        let currentPage = 1;
-        const itemsPerPage = 6;
-        let filteredHuissiers = [...huissiers];
-
-        function updateStats() {
-            document.getElementById('totalCount').textContent = filteredHuissiers.length;
-            const withConsultation = filteredHuissiers.filter(h => h.consultation_en_ligne === 1).length;
-            document.getElementById('consultationCount').textContent = withConsultation;
-            const avgExp = Math.round(filteredHuissiers.reduce((sum, h) => sum + h.annees_dex, 0) / filteredHuissiers.length);
-            document.getElementById('averageExperience').textContent = avgExp;
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase();
-        }
-
-        function renderRoster() {
-            const grid = document.getElementById('rosterGrid');
-            grid.innerHTML = '';
-            
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-            const pageItems = filteredHuissiers.slice(start, end);
-
-            pageItems.forEach(huissier => {
-                const card = document.createElement('div');
-                card.className = 'roster-card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <div class="card-avatar">${getInitials(huissier.name)}</div>
-                        <div class="card-title-section">
-                            <h3>${huissier.name}</h3>
-                            <p>${huissier.types_actes.toUpperCase()}</p>
-                        </div>
-                    </div>
-                    <div class="card-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Expérience</span>
-                            <span class="detail-value">${huissier.annees_dex} ans</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Localisation</span>
-                            <span class="detail-value">${huissier.ville}</span>
-                        </div>
-                        <span class="consultation-badge ${huissier.consultation_en_ligne ? 'consultation-yes' : 'consultation-no'}">
-                            ${huissier.consultation_en_ligne ? '✓ Consultation En Ligne' : '✗ Non Disponible'}
-                        </span>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-edit">Profil</button>
-                        <button class="btn btn-delete">Contacter</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-
-            renderPagination();
-        }
-
-        function renderPagination() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            const totalPages = Math.ceil(filteredHuissiers.length / itemsPerPage);
-
-            for (let i = 1; i <= totalPages; i++) {
-                const btn = document.createElement('button');
-                btn.textContent = i;
-                btn.className = i === currentPage ? 'active' : '';
-                btn.onclick = () => {
-                    currentPage = i;
-                    renderRoster();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                };
-                pagination.appendChild(btn);
-            }
-        }
-
-        function filterHuissiers() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const typesActes = document.getElementById('typesActesFilter').value;
-            const consultation = document.getElementById('consultationFilter').value;
-
-            filteredHuissiers = huissiers.filter(huissier => {
-                const matchSearch = huissier.name.toLowerCase().includes(searchTerm) || huissier.ville.toLowerCase().includes(searchTerm);
-                const matchTypes = !typesActes || huissier.types_actes === typesActes;
-                const matchConsultation = consultation === '' || huissier.consultation_en_ligne.toString() === consultation;
-                return matchSearch && matchTypes && matchConsultation;
-            });
-
-            currentPage = 1;
-            updateStats();
-            renderRoster();
-        }
-
-        document.getElementById('searchInput').addEventListener('input', filterHuissiers);
-        document.getElementById('typesActesFilter').addEventListener('change', filterHuissiers);
-        document.getElementById('consultationFilter').addEventListener('change', filterHuissiers);
-
-        updateStats();
-        renderRoster();
-    </script>
 </body>
 </html>
