@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajouter un Professionnel Juridique</title>
+
     <style>
         * {
             margin: 0;
@@ -360,7 +361,7 @@
                 <div class="form-divider" id="divider"></div>
 
                 <!-- Common Bottom Field -->
-                <div class="form-group checkbox-group">
+                <div class="form-group checkbox-group" style="margin-top: 2rem;">
                     <input type="checkbox" id="consultation" name="consultation" class="checkbox-input">
                     <label for="consultation" style="margin-bottom: 0;">Consultation en ligne disponible</label>
                 </div>
@@ -375,10 +376,20 @@
     </div>
 
     <script id="form-logic">
-        // This is where you'll add JavaScript to handle:
-        // 1. Show/hide conditional fields based on profession selection
-        // 2. Form validation
-        // 3. Form submission handling
+        let choice1 = document.getElementById("avocat-type");
+        let choice2 = document.getElementById("huissier-type");
+        let formPlace = document.getElementsByClassName("form-container")[0];
+        let avocat_field = document.getElementById("avocat-field");
+        avocat_field.style.display='block';
+        let huissier_field = document.getElementById("huissier-field");
+        choice1.addEventListener("click",(e)=>{
+            huissier_field.style.display='none';
+            avocat_field.style.display='block';
+        })
+        choice2.addEventListener("click",(e)=>{
+            avocat_field.style.display='none';
+            huissier_field.style.display='block';
+        })
     </script>
 </body>
 </html>
