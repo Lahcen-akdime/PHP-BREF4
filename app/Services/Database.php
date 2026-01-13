@@ -9,5 +9,3 @@ class Database {
         return SELF::$connection;
     }
 }
-$connection = Database::get_connection();
-var_dump($connection);

@@ -378,6 +378,8 @@
     <script id="form-logic">
         let choice1 = document.getElementById("avocat-type");
         let choice2 = document.getElementById("huissier-type");
+        let select1 = document.getElementById("specialty");
+        let select2 = document.getElementById("types-actes");
         let formPlace = document.getElementsByClassName("form-container")[0];
         let avocat_field = document.getElementById("avocat-field");
         avocat_field.style.display='block';
@@ -385,10 +387,13 @@
         choice1.addEventListener("click",(e)=>{
             huissier_field.style.display='none';
             avocat_field.style.display='block';
+            select2.value="";
+            
         })
         choice2.addEventListener("click",(e)=>{
             avocat_field.style.display='none';
             huissier_field.style.display='block';
+            select1.value="";
         })
     </script>
 </body>

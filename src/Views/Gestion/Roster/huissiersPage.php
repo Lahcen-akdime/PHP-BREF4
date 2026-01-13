@@ -24,10 +24,78 @@
             margin: 0 auto;
         }
 
-        header {
-            margin-bottom: 60px;
-            text-align: center;
-            animation: fadeInDown 0.8s ease;
+              header {
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            sticky: top 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-button.nav-link {
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .nav-button.nav-link:hover {
+            background: rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.login {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-button.login:hover {
+            background: rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.logout {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button.logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
         }
 
         h1 {
@@ -404,10 +472,16 @@
 <body>
     <div class="container">
         <header>
-            <h1>Cabinet d'Huissiers</h1>
-            <p class="subtitle">Découvrez nos experts en actes judiciaires</p>
-        </header>
-
+        <div class="logo">LegalHub</div>
+        <nav>
+            <a href="dashboard" class="nav-button nav-link">Home</a>
+            <a href="Statistiques" class="nav-button nav-link">Statistics</a>
+            <a href="Login" class="nav-button login">Login</a>
+            <a href="Logout" class="nav-button logout">Logout</a>
+        </nav>
+    </header>
+        
+        <h1>Cabinet d'Huissiers</h1>
         <div class="controls-wrapper">
             <div class="search-box">
                 <input type="text" placeholder="Rechercher un huissier..." id="searchInput">

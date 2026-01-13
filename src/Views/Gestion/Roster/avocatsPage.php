@@ -1,3 +1,8 @@
+<?php
+require_once "C:\laragon\www\ISTICHARA\app\Services\Database.php";
+$connection = Database::get_connection();
+$data = $connection -> query("SELECT * FROM avocat") -> fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,10 +29,78 @@
             margin: 0 auto;
         }
 
-        header {
-            margin-bottom: 60px;
-            text-align: center;
-            animation: fadeInDown 0.8s ease;
+              header {
+            backdrop-filter: blur(10px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            sticky: top 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-button.nav-link {
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .nav-button.nav-link:hover {
+            background: rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.login {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .nav-button.login:hover {
+            background: rgba(245, 158, 11, 0.2);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .nav-button.logout {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .nav-button.logout:hover {
+            background: rgba(239, 68, 68, 0.2);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+            transform: translateY(-2px);
         }
 
         h1 {
@@ -402,12 +475,17 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Cabinet d'Avocats</h1>
-            <p class="subtitle">Découvrez nos experts juridiques qualifiés</p>
-        </header>
-
+    <header>
+        <div class="logo">LegalHub</div>
+        <nav>
+            <a href="dashboard" class="nav-button nav-link">Home</a>
+            <a href="Statistiques" class="nav-button nav-link">Statistics</a>
+            <a href="Login" class="nav-button login">Login</a>
+            <a href="Logout" class="nav-button logout">Logout</a>
+        </nav>
+    </header>
+    <h1>Cabinet d'Avocats</h1>
+    <div class="container"> 
         <div class="controls-wrapper">
             <div class="search-box">
                 <input type="text" placeholder="Rechercher un avocat..." id="searchInput">
@@ -432,155 +510,32 @@
         </div>
 
         <div class="roster-grid">
+            <?php foreach($data as $key){?>
             <div class="roster-card">
                 <div class="card-header">
-                    <div class="card-avatar">MD</div>
+                    <div class="card-avatar">AV</div>
                     <div class="card-title-section">
-                        <h3>Marie Dupont</h3>
-                        <p>DROIT PÉNAL</p>
+                        <h3><?= $key['name'] ?></h3>
+                        <p><?= $key['specialite'] ?></p>
                     </div>
                 </div>
                 <div class="card-details">
                     <div class="detail-row">
                         <span class="detail-label">Expérience</span>
-                        <span class="detail-value">12 ans</span>
+                        <span class="detail-value"><?= $key['Annes_dex'] ?> ans</span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Paris</span>
+                        <span class="detail-value"><?= $key['ville_id'] ?></span>
                     </div>
-                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
+                    <span class="consultation-badge <?php if($key['consultation_en_ligne']==true){echo 'consultation-yes';}?>"><?php if($key['consultation_en_ligne']==true){echo "✓ Consultation En Ligne";} ?></span>
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-edit">Edit</button>
                     <button class="btn btn-delete">Delete</button>
                 </div>
-            </div>
-
-            <div class="roster-card">
-                <div class="card-header">
-                    <div class="card-avatar">JM</div>
-                    <div class="card-title-section">
-                        <h3>Jean Martin</h3>
-                        <p>DROIT CIVIL</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Expérience</span>
-                        <span class="detail-value">18 ans</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Lyon</span>
-                    </div>
-                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-
-            <div class="roster-card">
-                <div class="card-header">
-                    <div class="card-avatar">SB</div>
-                    <div class="card-title-section">
-                        <h3>Sophie Bernard</h3>
-                        <p>DROIT DE LA FAMILLE</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Expérience</span>
-                        <span class="detail-value">10 ans</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Marseille</span>
-                    </div>
-                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-
-            <div class="roster-card">
-                <div class="card-header">
-                    <div class="card-avatar">PM</div>
-                    <div class="card-title-section">
-                        <h3>Pierre Moreau</h3>
-                        <p>DROIT DES AFFAIRES</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Expérience</span>
-                        <span class="detail-value">20 ans</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Paris</span>
-                    </div>
-                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-
-            <div class="roster-card">
-                <div class="card-header">
-                    <div class="card-avatar">CL</div>
-                    <div class="card-title-section">
-                        <h3>Claire Laurent</h3>
-                        <p>DROIT PÉNAL</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Expérience</span>
-                        <span class="detail-value">15 ans</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Toulouse</span>
-                    </div>
-                    <span class="consultation-badge consultation-yes">✓ Consultation En Ligne</span>
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-
-            <div class="roster-card">
-                <div class="card-header">
-                    <div class="card-avatar">TP</div>
-                    <div class="card-title-section">
-                        <h3>Thomas Petit</h3>
-                        <p>DROIT CIVIL</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail-row">
-                        <span class="detail-label">Expérience</span>
-                        <span class="detail-value">8 ans</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Localisation</span>
-                        <span class="detail-value">Nice</span>
-                    </div>
-                    <span class="consultation-badge consultation-no">✗ Non Disponible</span>
-                </div>
-                <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
+            </div> 
+            <?php } ?>
         </div>
 
         <div class="pagination" id="pagination"></div>
