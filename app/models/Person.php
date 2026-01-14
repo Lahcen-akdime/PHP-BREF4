@@ -14,8 +14,15 @@ class Person {
     $data = self::$connection -> query("SELECT * FROM $tableName") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
-    public function villeName($id){
-    $villeName = self::$connection -> query("SELECT name FROM ville WHERE id = $id") -> fetchAll(\PDO::FETCH_NUM);
-    return $villeName[0][0];
+    public function create($tableName,$columnName,$name,$selected,
+                           $consultation_en_ligne,$Annes_dex,$ville_id){
+    $operation = self::$connection->query("INSERT INTO $tableName(name,:columnName,
+                            consultation_en_ligne,Annes_dex,ville_id)
+                            VALUES(:name,:selected,:consultation_en_ligne,
+                            :Annes_dex,:ville_id)");
+    
+    $operation -> execute([":name"=>$name,":selected"=>$selected,
+                            ":consultation_en_ligne"=>$consultation_en_ligne,
+                            ":Annes_dex"=>$Annes_dex,":ville_id"=>$ville_id]);
     }
 }

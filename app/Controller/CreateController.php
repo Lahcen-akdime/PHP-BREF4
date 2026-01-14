@@ -10,6 +10,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     if(empty($_POST['specialite'])){
         // its a huissier user
     $types_actes = $_POST['types_actes']; 
+    
     }
     else{
         // its avocat user

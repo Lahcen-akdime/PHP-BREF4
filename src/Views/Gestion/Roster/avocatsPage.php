@@ -51,7 +51,7 @@
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Localisation</span>
-                        <span class="detail-value"><?= $avocatClass -> villeName($key['ville_id']) ?></span>
+                        <span class="detail-value"><?= $villeClass -> villeName($key['ville_id']) ?></span>
                     </div>
                     <span class="consultation-badge <?php if($key['consultation_en_ligne']==true){echo 'consultation-yes';}?>"><?php if($key['consultation_en_ligne']==true){echo "✓ Consultation En Ligne";} ?></span>
                 </div>
