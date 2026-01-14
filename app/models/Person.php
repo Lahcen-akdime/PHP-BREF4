@@ -16,7 +16,7 @@ class Person {
     }
     public function create($tableName,$columnName,$name,$selected,
                            $consultation_en_ligne,$Annes_dex,$ville_id){
-    $operation = self::$connection->query("INSERT INTO $tableName(name,:columnName,
+    $operation = self::$connection->prepare("INSERT INTO $tableName(name,$columnName,
                             consultation_en_ligne,Annes_dex,ville_id)
                             VALUES(:name,:selected,:consultation_en_ligne,
                             :Annes_dex,:ville_id)");
@@ -24,5 +24,8 @@ class Person {
     $operation -> execute([":name"=>$name,":selected"=>$selected,
                             ":consultation_en_ligne"=>$consultation_en_ligne,
                             ":Annes_dex"=>$Annes_dex,":ville_id"=>$ville_id]);
+    }
+    public function delete($tableName,$id){
+        self::$connection->query("DELETE FROM $tableName WHERE id = $id");
     }
 }

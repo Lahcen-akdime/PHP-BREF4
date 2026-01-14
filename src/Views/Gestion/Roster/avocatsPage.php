@@ -10,7 +10,7 @@
 <body>
     <?php require_once "../src/Views/public/header.html" ?>
     <h1>Cabinet d'Avocats</h1>
-    <div class="container"> 
+    <div class="container">
         <div class="controls-wrapper">
             <div class="search-box">
                 <input type="text" placeholder="Rechercher un avocat..." id="searchInput">
@@ -30,7 +30,7 @@
                 </select>
             </div>
             <div class="card-actions">
-                    <a href="../Formulaires/DinamicCreate.php"><button class="btn btn-edit">Add avocat + </button></a>
+                    <a href="Create"><button class="btn btn-edit">Add avocat + </button></a>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
+                    <a href="DeleteAvocat&id=<?= $key['id'] ?>"><button type="button" class="btn btn-delete">Delete</button></a>
                 </div>
             </div> 
             <?php } ?>

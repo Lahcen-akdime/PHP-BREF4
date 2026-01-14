@@ -310,23 +310,20 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
-                    </div>
-                    <div class="form-group">
                         <label for="experience">Années d'Expérience *</label>
-                        <input type="number" id="experience" name="experience" placeholder="10" min="0" required>
+                        <input type="number" id="experience" name="Annes_dex" placeholder="10" min="0" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="city">Ville *</label>
-                        <input type="text" id="city" name="city" placeholder="Paris" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Téléphone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+33 6 12 34 56 78">
+                        <label for="ville">Ville *</label>
+                        <select id="specialty" name="ville_id">
+                            <option value="">Sélectionnez une ville</option>
+                           <?php foreach($allvilles as $ville){?>
+                            <option value="<?= $ville['id'] ?>"><?= $ville['name'] ?></option>
+                           <?php }  ?>
+                        </select>
                     </div>
                 </div>
 
@@ -334,12 +331,12 @@
                 <div class="conditional-field" id="avocat-field">
                     <div class="form-group">
                         <label for="specialty">Spécialité *</label>
-                        <select id="specialty" name="specialty">
+                        <select id="specialty" name="specialite">
                             <option value="">Sélectionnez une spécialité</option>
-                            <option value="Droit_Penal">Droit Pénal</option>
-                            <option value="Droit_Civil">Droit Civil</option>
-                            <option value="Droit_Famille">Droit de la Famille</option>
-                            <option value="Droit_Affaires">Droit des Affaires</option>
+                            <option value="Droit_penal">Droit Pénal</option>
+                            <option value="civil">Droit Civil</option>
+                            <option value="famille">Droit de la Famille</option>
+                            <option value="affaires">Droit des Affaires</option>
                         </select>
                     </div>
                 </div>
@@ -348,12 +345,11 @@
                 <div class="conditional-field" id="huissier-field">
                     <div class="form-group">
                         <label for="types-actes">Types d'Actes *</label>
-                        <select id="types-actes" name="types-actes">
+                        <select id="types-actes" name="types_actes">
                             <option value="">Sélectionnez un type d'acte</option>
                             <option value="Signification">Signification</option>
-                            <option value="Constat">Constat</option>
-                            <option value="Recouvrement">Recouvrement</option>
-                            <option value="Expulsion">Expulsion</option>
+                            <option value="Constats">Constats</option>
+                            <option value="execution">execution</option>
                         </select>
                     </div>
                 </div>
@@ -362,8 +358,11 @@
 
                 <!-- Common Bottom Field -->
                 <div class="form-group checkbox-group" style="margin-top: 2rem;">
-                    <input type="checkbox" id="consultation" name="consultation" class="checkbox-input">
-                    <label for="consultation" style="margin-bottom: 0;">Consultation en ligne disponible</label>
+                    <label for="consultation" style="margin-bottom: 0;">Consultation en ligne </label>
+                    <select type="checkbox" id="types-actes" name="consultation_en_ligne">
+                        <option value="0">Non</option>
+                        <option value="1">Oui</option>
+                    </select>
                 </div>
 
                 <!-- Buttons -->

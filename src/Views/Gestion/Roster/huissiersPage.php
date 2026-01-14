@@ -29,7 +29,7 @@
                 </select>
             </div>
             <div class="card-actions">
-                    <a href=""><button class="btn btn-edit">Add huissier + </button></a>
+                    <a href="Create"><button class="btn btn-edit">Add huissier + </button></a>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                 </div>
                 <div class="card-actions">
                     <button class="btn btn-edit">Edit</button>
-                    <button class="btn btn-delete">Delete</button>
+                    <a href="DeleteHuissier&id=<?= $key['id'] ?>"><button class="btn btn-delete">Delete</button></a>
                 </div>
             </div> 
             <?php } ?>
