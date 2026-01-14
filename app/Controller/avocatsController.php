@@ -1,6 +1,6 @@
 <?php
-require_once "..\app\Services\Database.php";
-require_once "..\app\models\avocat.php";
+use models\Avocat ;
+use Services\Database ;
 $connection = Database::get_connection();
 $avocatClass = new Avocat($connection);
 $data = $avocatClass -> getAll("avocat");

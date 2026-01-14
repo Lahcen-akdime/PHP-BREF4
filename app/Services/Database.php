@@ -1,4 +1,6 @@
 <?php
+namespace Services ;
+use PDO ;
 class Database {
     private static ?PDO $connection = null;
     public static function get_connection():PDO{

@@ -292,7 +292,7 @@
             <p class="subtitle">Enregistrez un nouvel avocat ou huissier</p>
         </header>
 
-        <form id="professionalForm" class="professional-form">
+        <form id="professionalForm" class="professional-form" method="POST">
             <div class="type-selector">
                 <input type="radio" id="avocat-type" class="radio-option" name="profession" value="avocat" checked>
                 <label for="avocat-type" class="radio-label">Avocat</label>
@@ -368,7 +368,7 @@
 
                 <!-- Buttons -->
                 <div class="button-group">
-                    <button type="reset" class="btn-cancel">Annuler</button>
+                    <a href="home"><button type="button" class="btn-cancel">Annuler</button></a>
                     <button type="submit" class="btn-submit">Ajouter</button>
                 </div>
             </div>

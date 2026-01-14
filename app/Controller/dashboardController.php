@@ -1,2 +1,2 @@
 <?php 
-include_once "C:\laragon\www\ISTICHARA\src\Views\Dashboards/home.php";
+include_once "..\src\Views\Dashboards\home.php";
