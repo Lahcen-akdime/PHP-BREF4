@@ -289,13 +289,13 @@
     <div class="container">
         <header>
             <h1>Ajouter un Professionnel</h1>
-            <p class="subtitle">Enregistrez un nouvel avocat ou huissier</p>
+            <p class="subtitle">Enregistrez un nouvel Huissier ou huissier</p>
         </header>
 
         <form id="professionalForm" class="professional-form" method="POST">
             <div class="type-selector">
-                <input type="radio" id="avocat-type" class="radio-option" name="profession" value="avocat" checked>
-                <label for="avocat-type" class="radio-label">Avocat</label>
+                <input type="radio" id="Huissier-type" class="radio-option" name="profession" value="Huissier" checked>
+                <label for="Huissier-type" class="radio-label">Huissier</label>
             </div>
 
             <div class="form-container">
@@ -324,16 +324,15 @@
                     </div>
                 </div>
                 <input type="hidden" value="<?= $data['id'] ?>" name="id">
-                <!-- Avocat Specific Fields -->
-                <div id="avocat-field">
+                <!-- huissier Specific Fields -->
+                <div id="huissier-field">
                     <div class="form-group">
-                        <label for="specialty">Spécialité *</label>
-                        <select id="specialty" name="specialite">
-                            <option value="<?= $data['specialite'] ?>"><?= $data['specialite'] ?></option>
-                            <option value="Droit_penal">Droit Pénal</option>
-                            <option value="civil">Droit Civil</option>
-                            <option value="famille">Droit de la Famille</option>
-                            <option value="affaires">Droit des Affaires</option>
+                        <label for="types-actes">Types d'Actes *</label>
+                        <select id="types-actes" name="types_actes" value="<?= $data['types_actes'] ?>">
+                            <option value="<?= $data['types_actes'] ?>"><?= $data['types_actes'] ?></option>
+                            <option value="Signification">Signification</option>
+                            <option value="Constats">Constats</option>
+                            <option value="execution">execution</option>
                         </select>
                     </div>
                 </div>

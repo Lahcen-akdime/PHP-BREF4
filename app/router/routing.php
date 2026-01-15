@@ -8,7 +8,9 @@ class Routing{
                                         "Statistiques"=>"statistiquesController",
                                         "Create"=>"CreateController",
                                         "DeleteAvocat"=>"DeleteAvocatController",
-                                        "DeleteHuissier"=>"DeleteHuissierController"];
+                                        "DeleteHuissier"=>"DeleteHuissierController",
+                                        "editHuissier"=>"editHuissierController",
+                                        "editAvocat"=>"editAvocatController"];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
         if(array_key_exists($page,self::$controllers)){

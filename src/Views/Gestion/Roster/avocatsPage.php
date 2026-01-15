@@ -56,7 +56,7 @@
                     <span class="consultation-badge <?php if($key['consultation_en_ligne']==true){echo 'consultation-yes';}?>"><?php if($key['consultation_en_ligne']==true){echo "✓ Consultation En Ligne";} ?></span>
                 </div>
                 <div class="card-actions">
-                    <button class="btn btn-edit">Edit</button>
+                    <a href="editAvocat&id=<?= $key['id'] ?>"><button type="button" class="btn btn-edit">Edit</button></a>
                     <a href="DeleteAvocat&id=<?= $key['id'] ?>"><button type="button" class="btn btn-delete">Delete</button></a>
                 </div>
             </div> 

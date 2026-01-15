@@ -28,4 +28,8 @@ class Person {
     public function delete($tableName,$id){
         self::$connection->query("DELETE FROM $tableName WHERE id = $id");
     }
+    public function getUser($tableName,$id){
+    $data = self::$connection -> query("SELECT * FROM $tableName WHERE id = $id") -> fetchAll(\PDO::FETCH_ASSOC);
+    return $data[0] ;
+    }
 }
