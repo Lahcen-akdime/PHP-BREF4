@@ -7,13 +7,13 @@ let rosterPlase = document.getElementsByClassName("roster-grid")[0];
 search.addEventListener("input",async function (){
 rosterPlase.innerHTML=``;
 let array = await searched(search.value);
-console.log(array);
-array.forEach(element => {
-   rosterPlase.innerHTML+=`
-   
-   `; 
+for (let index = 0; index < array.length; index++) {
+rosterPlase.innerHTML=`
+
+`;    
+}
+
 });
-})
 
 async function searched (name){
  let response = await fetch("http://localhost/ISTICHARA/json&search="+name);
