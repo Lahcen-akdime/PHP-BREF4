@@ -32,4 +32,8 @@ class Person {
     $data = self::$connection -> query("SELECT * FROM $tableName WHERE id = $id") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data[0] ;
     }
+    public function search($tableName,$indice){
+    $data = self::$connection -> query("SELECT * FROM $tableName WHERE name LIKE '$indice%'") -> fetchAll(\PDO::FETCH_ASSOC);
+    return $data ;
+    }
 }

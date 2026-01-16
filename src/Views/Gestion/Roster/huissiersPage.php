@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabinet d'Huissiers</title>
        <link rel="stylesheet" href="src/Views/Public/style.css">
+       <script src="src/Views/Public/script.js"></script>
 </head>
 <body>
     <?php require_once "../src/Views/public/header.html" ?>
@@ -61,6 +62,11 @@
                 </div>
             </div> 
             <?php } ?>
+            <div class="pagination" id="pagination">
+            <button class="page-btn">...</button>
+            <button class="page-btn">Precédent</button>
+            <button class="page-btn">Suivant</button>
+            </div>
         </div>
 
         <div class="pagination" id="pagination"></div>

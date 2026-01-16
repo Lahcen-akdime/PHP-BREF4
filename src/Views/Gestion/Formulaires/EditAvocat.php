@@ -353,7 +353,7 @@
                 <!-- Buttons -->
                 <div class="button-group">
                     <a href="avocats"><button type="button" class="btn-cancel">Annuler</button></a>
-                    <button type="submit" class="btn-submit">Modifier</button>
+                   <button type="submit" class="btn-submit">Modifier</button>
                 </div>
             </div>
         </form>

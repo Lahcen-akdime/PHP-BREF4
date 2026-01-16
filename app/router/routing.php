@@ -10,7 +10,9 @@ class Routing{
                                         "DeleteAvocat"=>"DeleteAvocatController",
                                         "DeleteHuissier"=>"DeleteHuissierController",
                                         "editHuissier"=>"editHuissierController",
-                                        "editAvocat"=>"editAvocatController"];
+                                        "editAvocat"=>"editAvocatController",
+                                        "json"=>"jsonController",
+                                        "pagination"=>"paginationController"];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
         if(array_key_exists($page,self::$controllers)){

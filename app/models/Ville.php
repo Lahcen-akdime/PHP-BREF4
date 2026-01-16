@@ -1,8 +1,7 @@
 <?php
 namespace models ;
-use PDO ;
 class Ville{
-    private static PDO $connection ;
+    private static \PDO $connection ;
     public function __construct($database)
     {
        self::$connection = $database ;

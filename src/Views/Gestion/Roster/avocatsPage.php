@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabinet Juridique - Avocats</title>
        <link rel="stylesheet" href="src/Views/Public/style.css">
+       <script src="src/Views/Public/script.js" defer></script>
 </head>
 <body>
     <?php require_once "../src/Views/public/header.html" ?>
@@ -14,6 +15,9 @@
         <div class="controls-wrapper">
             <div class="search-box">
                 <input type="text" placeholder="Rechercher un avocat..." id="searchInput">
+            </div>
+            <div id="test">
+
             </div>
             <div class="filters">
                 <select id="specialityFilter">
@@ -33,7 +37,6 @@
                     <a href="Create"><button class="btn btn-edit">Add avocat + </button></a>
             </div>
         </div>
-
         <div class="roster-grid">
             <?php foreach($data as $key){?>
             <div class="roster-card">
@@ -61,9 +64,12 @@
                 </div>
             </div> 
             <?php } ?>
+            <div class="pagination" id="pagination">
+            <button class="page-btn">...</button>
+            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Precédent</button></a>
+            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
+            </div>
         </div>
-
-        <div class="pagination" id="pagination"></div>
     </div>
 </body>
 </html>

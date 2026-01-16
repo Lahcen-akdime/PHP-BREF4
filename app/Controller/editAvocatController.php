@@ -17,6 +17,6 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     $id = $_POST['id'];
   $avocatClass->edit($id,$name,$consultation_en_ligne,$Annes_dex,$ville_id,$specialite);
   echo '<script type="text/javascript">
-           window.location = "huissier";
+           window.location = "avocats";
       </script>';
 }
