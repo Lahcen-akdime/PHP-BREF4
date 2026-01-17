@@ -27,11 +27,6 @@
                     <option value="famille">Droit de la Famille</option>
                     <option value="affaires">Droit des Affaires</option>
                 </select>
-                <select id="consultationFilter">
-                    <option value="">Tous les statuts</option>
-                    <option value="1">Consultation En Ligne</option>
-                    <option value="0">Sans Consultation En Ligne</option>
-                </select>
             </div>
             <div class="card-actions">
                     <a href="Create"><button class="btn btn-edit">Add avocat + </button></a>
@@ -56,7 +51,7 @@
                         <span class="detail-label">Localisation</span>
                         <span class="detail-value"><?= $villeClass -> villeName($key['ville_id']) ?></span>
                     </div>
-                    <span class="consultation-badge <?php if($key['consultation_en_ligne']==true){echo 'consultation-yes';}?>"><?php if($key['consultation_en_ligne']==true){echo "✓ Consultation En Ligne";} ?></span>
+                    <span class="consultation-badge <?php if($key['consultation_en_ligne']==true){echo 'consultation-yes';}?>"><?php if($key['consultation_en_ligne']==true){echo "✓ Consultation En Ligne";} else{echo "✖️ pas de consultation";} ?></span>
                 </div>
                 <div class="card-actions">
                     <a href="editAvocat&id=<?= $key['id'] ?>"><button type="button" class="btn btn-edit">Edit</button></a>
@@ -65,11 +60,11 @@
             </div> 
             <?php } ?>
             <div class="pagination" id="pagination">
-            <button class="page-btn">...</button>
-            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Precédent</button></a>
-            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
-            </div>
-        </div>
+                <button class="page-btn">...</button>
+                <a href="pagination&curruntPage=<?= $currentPage-- ?>"><button class="page-btn">Precédent</button></a>
+                <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
+                </div>
+                </div>
     </div>
 </body>
 </html>
