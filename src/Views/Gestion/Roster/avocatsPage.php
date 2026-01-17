@@ -21,7 +21,7 @@
             </div>
             <div class="filters">
                 <select id="specialityFilter">
-                    <option value="">Toutes les spécialités</option>
+                    <option value="all">Toutes les spécialités</option>
                     <option value="Droit_penal">Droit Pénal</option>
                     <option value="civil">Droit Civil</option>
                     <option value="famille">Droit de la Famille</option>
@@ -59,12 +59,12 @@
                 </div>
             </div> 
             <?php } ?>
-            <div class="pagination" id="pagination">
-                <button class="page-btn">...</button>
-                <a href="pagination&curruntPage=<?= $currentPage-- ?>"><button class="page-btn">Precédent</button></a>
-                <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
-                </div>
-                </div>
+        </div>
+        <div class="pagination" id="pagination">
+            <button class="page-btn">...</button>
+            <a href="pagination&curruntPage=<?= $currentPage-- ?>"><button class="page-btn">Precédent</button></a>
+            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
+        </div>
     </div>
 </body>
 </html>

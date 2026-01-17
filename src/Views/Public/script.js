@@ -42,10 +42,6 @@ async function searched (name){
  return data ;
 }
 
-
-
-
-
 // _ _____ _____ filter part ____ ______ ______ //
 
 let filter = document.getElementById("specialityFilter");
