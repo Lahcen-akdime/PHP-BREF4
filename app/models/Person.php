@@ -40,4 +40,9 @@ class Person {
     $data = self::$connection -> query("SELECT * FROM $tableName WHERE specialite = '$indice'") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
+    public function displayByPage($tableName,$currentPage){
+    $startIn = ($currentPage - 1) * 4 ;
+    $data = self::$connection -> query("SELECT * FROM $tableName Limit 4 OFFSET $startIn") -> fetchAll(\PDO::FETCH_ASSOC);
+    return $data ;
+    }
 }

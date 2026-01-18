@@ -62,14 +62,13 @@
                 </div>
             </div> 
             <?php } ?>
-            <div class="pagination" id="pagination">
-            <button class="page-btn">...</button>
-            <button class="page-btn">Precédent</button>
-            <button class="page-btn">Suivant</button>
-            </div>
         </div>
 
-        <div class="pagination" id="pagination"></div>
+       <div class="pagination" id="pagination">
+            <button class="page-btn">Page <?= $currentPage ?></button>
+            <a href="huissier&curruntPage=<?= $previusPage ?>"><button <?= $currentPage == 1 ? 'hidden' : "" ?> class="page-btn" >Precédent</button></a>
+            <a href="huissier&curruntPage=<?= $nextPage ?>"><button  <?= $cartesDisplayed != 4 || $nextCartes == 0 ? 'hidden' : "" ?> class="page-btn">Suivant</button></a>
+        </div>
     </div>
 </body>
 </html>
