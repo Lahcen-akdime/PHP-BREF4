@@ -1,4 +1,8 @@
-
+<?php 
+$currentPage = $_GET['curruntPage'] ?? 1 ;
+$nextPage = $currentPage + 1 ;
+$previusPage = $currentPage - 1 ;
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -62,8 +66,8 @@
         </div>
         <div class="pagination" id="pagination">
             <button class="page-btn">...</button>
-            <a href="pagination&curruntPage=<?= $currentPage-- ?>"><button class="page-btn">Precédent</button></a>
-            <a href="pagination&curruntPage=<?= $currentPage++ ?>"><button class="page-btn">Suivant</button></a>
+            <a href="avocats&curruntPage=<?= $previusPage ?>"><button class="page-btn">Precédent</button></a>
+            <a href="avocats&curruntPage=<?= $nextPage ?>"><button class="page-btn">Suivant</button></a>
         </div>
     </div>
 </body>
