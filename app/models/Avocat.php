@@ -11,4 +11,10 @@ class Avocat extends Person {
         $operation -> execute([":name"=>$name,":consultation_en_ligne"=>$consultation_en_ligne,":Annes_dex"=>$Annes_dex,
                                 ":ville_id"=>$ville_id,":specialite"=>$specialite,":id"=>$id]);
     }
+    public function top3(){
+$data = self::$connection-> query("SELECT name , Annes_dex
+FROM avocat
+ORDER BY Annes_dex DESC LIMIT 3");
+return $data ;
+    }
 }

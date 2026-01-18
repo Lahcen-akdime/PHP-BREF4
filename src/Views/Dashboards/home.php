@@ -24,7 +24,7 @@
             </a>
 
             
-            <a href="statistique" class="button-card">
+            <a href="Statistiques" class="button-card">
                 <div class="button-icon">📊</div>
                 <div class="button-label">Statistics</div>
             </a>

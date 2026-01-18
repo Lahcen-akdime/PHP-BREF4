@@ -10,7 +10,7 @@
 <body>
     <?php require_once "../src/Views/public/header.html" ?>
     <div class="container">
-        <h1>Cabinet d'Huissiers</h1>
+        <h1 class="h1">Cabinet d'Huissiers</h1>
         <div class="controls-wrapper">
             <div class="search-box">
                 <input type="text" placeholder="Rechercher un huissier..." id="searchInput">

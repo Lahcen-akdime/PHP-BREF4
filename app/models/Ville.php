@@ -14,4 +14,8 @@ class Ville{
     $all = self::$connection -> query("SELECT * FROM ville") -> fetchAll(\PDO::FETCH_ASSOC);
     return $all ;
     }
+    public function gitCountByVille($villeName,$villeId){
+      $totale = self::$connection -> query("SELECT COUNT(*) FROM $villeName WHERE ville_id = $villeId")->fetchColumn();
+      return $totale ;
+    }
 }
