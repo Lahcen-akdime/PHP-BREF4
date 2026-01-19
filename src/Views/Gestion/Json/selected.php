@@ -1,5 +1,4 @@
 <?php
-
 use models\Avocat;
 use models\Huissier;
 use Services\Database;
@@ -23,6 +22,25 @@ if (isset($_GET['search'])) {
     }
     echo json_encode($array);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ____________________________________ Filter Avocats __________________________________________________ //
 if (isset($_GET['filter'])) {
     $array = [];
