@@ -3,6 +3,7 @@ Use Services\Database ;
 Use models\Huissier ;
 Use models\Avocat ;
 Use models\Ville ;
+
 $connection = Database::get_connection();
 $villeClass = new ville($connection);
 $huissierClass = new Huissier($connection);
