@@ -2,7 +2,7 @@ CREATE TABLE ville (
 id int PRIMARY key AUTO_INCREMENT ,
 name varchar(100) not null
 );
-
+//
 CREATE TABLE AVOCAT (
  id int PRIMARY key AUTO_INCREMENT ,
  name varchar(100) not null ,
