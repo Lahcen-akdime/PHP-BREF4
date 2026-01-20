@@ -21,7 +21,7 @@ class Person {
                             VALUES(:name,:selected,:consultation_en_ligne,
                             :Annes_dex,:ville_id)");
     
-    $operation -> execute([":name"=>$name,":selected"=>$selected,
+    $operation -> execute([":name"=>$name,":selected"=>$selected,           
                             ":consultation_en_ligne"=>$consultation_en_ligne,
                             ":Annes_dex"=>$Annes_dex,":ville_id"=>$ville_id]);
     }
