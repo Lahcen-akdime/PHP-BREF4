@@ -1,12 +1,13 @@
 <?php
 namespace models ;
-class Person {
-    protected int $id ;
-    protected string $name ;
+class Professionel extends User {
     protected bool $consultation_en_ligne ;
     protected int $Annes_dex ;
     protected int $ville_id ;
+    protected float $taarif;
+    protected array $document;
     protected static \PDO $connection ;
+    protected object $disponibilite;
     public function __construct(\PDO $connection) {
         self::$connection = $connection;
     }
