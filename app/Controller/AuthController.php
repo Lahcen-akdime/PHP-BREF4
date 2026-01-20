@@ -20,8 +20,9 @@ class AuthController{
     }
     public static function FormDire()
     {
-        if(isset($_POST['role']) == 'CLIENT'){
+        if(isset($_POST['role']) && $_POST['role'] == 'CLIENT'){
             header('location:/PHP-BREF4/Auth/Login');
+            $_SESSION['role'] = 'CLIENT';
         }else{
             header('location:/PHP-BREF4/Auth/Pro');
         }

@@ -8,15 +8,15 @@
 </head>
 
 
-<body>
-
 <!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">LegalHub</div>
     <div>
-        <a href="SignUp" class="nav-button logout">Sign Up</a>
+        <a href="SignUp" class="nav-button logout">SignUp</a>
     </div>
 </div>
+<body>
+
 
 <!-- LOGIN -->
 <div class="container">

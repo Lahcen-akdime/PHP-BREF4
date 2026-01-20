@@ -452,6 +452,83 @@
             }
         }
 
+/* ==================SignUp==================== */
+/* ===== WRAPPER ===== */
+.client-signup-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== CARD ===== */
+.client-signup-card {
+    width: 420px;
+    padding: 42px;
+    border-radius: 26px;
+    background: linear-gradient(180deg, #020617, #020617dd);
+    box-shadow: 0 0 45px rgba(34,211,238,0.18);
+    text-align: center;
+}
+
+/* ===== TITLE ===== */
+.client-signup-title {
+    font-size: 24px;
+    margin-bottom: 8px;
+    background: linear-gradient(90deg, #22d3ee, #eab308);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.client-signup-subtitle {
+    font-size: 14px;
+    opacity: 0.75;
+    margin-bottom: 30px;
+}
+
+/* ===== INPUTS ===== */
+.client-signup-group {
+    margin-bottom: 18px;
+}
+
+.client-signup-group input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: #020617;
+    color: white;
+    outline: none;
+}
+
+/* ===== BUTTON ===== */
+.client-signup-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 18px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, #22d3ee, #eab308);
+    color: #020617;
+    transition: 0.3s;
+}
+
+.client-signup-btn:hover {
+    opacity: 0.85;
+}
+
+/* ===== SWITCH ===== */
+.client-signup-switch {
+    margin-top: 18px;
+    font-size: 14px;
+}
+
+.client-signup-switch a {
+    color: #22d3ee;
+    text-decoration: none;
+}
 
     /* ====================Login============================= */
     
