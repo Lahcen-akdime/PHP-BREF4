@@ -5,7 +5,7 @@ use models\Person ;
 class Avocat extends Person {
     protected string $types_actes ;
     public function edit($id,$name,$consultation_en_ligne,$Annes_dex,$ville_id,$specialite){
-        $operation = self::$connection->prepare("UPDATE  avocat set name=:name,
+        $operation = self::$connection->prepare("UPDATE  avocats set name=:name,
                                                 consultation_en_ligne=:consultation_en_ligne,Annes_dex=:Annes_dex,
                                                 ville_id=:ville_id,specialite=:specialite WHERE id = :id");
         $operation -> execute([":name"=>$name,":consultation_en_ligne"=>$consultation_en_ligne,":Annes_dex"=>$Annes_dex,
@@ -13,7 +13,7 @@ class Avocat extends Person {
     }
     public function top3(){
 $data = self::$connection-> query("SELECT name , Annes_dex
-FROM avocat
+FROM avocats
 ORDER BY Annes_dex DESC LIMIT 3");
 return $data ;
     }

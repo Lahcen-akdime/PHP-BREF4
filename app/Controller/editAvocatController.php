@@ -6,7 +6,7 @@ $connection = Database::get_connection() ;
 $avocatClass = new Avocat($connection) ;
 $villeClass = new ville($connection) ;
 $allvilles = $villeClass -> getAll() ;
-$data = $avocatClass -> getUser("avocat",$_GET['id']) ;
+$data = $avocatClass -> getUser("avocats",$_GET['id']) ;
 include_once "..\src\Views\Gestion\Formulaires\EditAvocat.php" ;
 if($_SERVER['REQUEST_METHOD']=="POST"){
     $name = $_POST['name'];

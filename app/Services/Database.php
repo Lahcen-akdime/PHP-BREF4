@@ -1,12 +1,19 @@
 <?php
 namespace Services ;
 use PDO ;
+use PDOException;
+
 class Database {
     private static ?PDO $connection = null;
     public static function get_connection():PDO{
         if(SELF::$connection == null){
-        SELF::$connection = new PDO("mysql:host=localhost;dbname=istichara;
-        port=3307;charset=utf8mb4",'root','');
+            try {
+                SELF::$connection = new PDO("pgsql:host=localhost;
+                                            dbname=ISTICHARA", 
+                                            "postgres","lahcen2025");
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+            }
         }
         return SELF::$connection;
     }
