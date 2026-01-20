@@ -3,6 +3,7 @@ Use Services\Database ;
 Use models\Huissier ;
 Use models\Avocat ;
 Use models\Ville ;
+
 $connection = Database::get_connection();
 $villeClass = new ville($connection);
 $huissierClass = new Huissier($connection);
@@ -20,7 +21,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     if(empty($_POST['specialite'])){
         // its a huissier user
     $types_actes = $_POST['types_actes'];
-    $huissierClass -> create("huissier",'types_actes',$name,$types_actes,
+    $huissierClass -> create("huissiers",'types_actes',$name,$types_actes,
                             $consultation_en_ligne,$Annes_dex,$ville_id);
     echo '<script type="text/javascript">
            window.location = "huissier";

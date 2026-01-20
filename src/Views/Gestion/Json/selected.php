@@ -10,7 +10,7 @@ $villeClass = new Ville($Database::get_connection());
 $avocatClass = new Avocat($Database::get_connection());
 $array = [];
 if (isset($_GET['search'])) {
-    $selected = $avocatClass->search("avocat", $_GET['search']);
+    $selected = $avocatClass->search("avocats", $_GET['search']);
     foreach ($selected as $key) {
         if ($key['consultation_en_ligne'] == true) {
             $key['consultation_en_ligne'] = "✓ Consultation En Ligne";
@@ -22,30 +22,11 @@ if (isset($_GET['search'])) {
     }
     echo json_encode($array);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ____________________________________ Filter Avocats __________________________________________________ //
 if (isset($_GET['filter'])) {
     $array = [];
     if ($_GET['filter'] == "all") {
-        $all = $avocatClass->getAll("avocat");
+        $all = $avocatClass->getAll("avocats");
         foreach ($all as $key) {
             if ($key['consultation_en_ligne'] == true) {
                 $key['consultation_en_ligne'] = "✓ Consultation En Ligne";
@@ -56,7 +37,7 @@ if (isset($_GET['filter'])) {
             array_push($array, $key);
         }
     } else {
-        $selected = $avocatClass->filter("avocat", $_GET['filter']);
+        $selected = $avocatClass->filter("avocats", $_GET['filter']);
         foreach ($selected as $key) {
             if ($key['consultation_en_ligne'] == true) {
                 $key['consultation_en_ligne'] = "✓ Consultation En Ligne";

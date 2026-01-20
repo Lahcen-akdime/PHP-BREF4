@@ -8,7 +8,7 @@ $huissierClass = new Huissier($connection);
 $avocatClass = new Avocat($connection);
 $villeClass = new ville($connection);
 $avocatsSum = sizeof($avocatClass -> getAll("avocats"));
-$huissierSum = sizeof($huissierClass -> getAll("huissier"));
+$huissierSum = sizeof($huissierClass -> getAll("huissiers"));
 $top3 = $avocatClass -> top3();
 $allvilles = $villeClass -> getAll() ;
 include_once "..\src\Views\Statistiques\statistiques.php";

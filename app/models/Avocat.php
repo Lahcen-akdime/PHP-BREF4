@@ -1,9 +1,9 @@
 <?php
 namespace models;
-use models\Person ;
-// require_once "Person.php";
-class Avocat extends Person {
-    protected string $types_actes ;
+use models\Professionel ;
+// require_once "Professionel.php";
+class Avocat extends Professionel {
+    protected string $specialite ;
     public function edit($id,$name,$consultation_en_ligne,$Annes_dex,$ville_id,$specialite){
         $operation = self::$connection->prepare("UPDATE  avocats set name=:name,
                                                 consultation_en_ligne=:consultation_en_ligne,Annes_dex=:Annes_dex,

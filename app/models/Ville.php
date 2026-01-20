@@ -7,11 +7,11 @@ class Ville{
        self::$connection = $database ;
     }
   public function villeName($id){
-    $villeName = self::$connection -> query("SELECT name FROM ville WHERE id = $id") -> fetchAll(\PDO::FETCH_NUM);
+    $villeName = self::$connection -> query("SELECT name FROM villes WHERE id = $id") -> fetchAll(\PDO::FETCH_NUM);
     return $villeName[0][0];
     }
     public function getAll(){
-    $all = self::$connection -> query("SELECT * FROM ville") -> fetchAll(\PDO::FETCH_ASSOC);
+    $all = self::$connection -> query("SELECT * FROM villes") -> fetchAll(\PDO::FETCH_ASSOC);
     return $all ;
     }
     public function gitCountByVille($villeName,$villeId){

@@ -4,7 +4,7 @@ use Services\Database ;
 use models\Ville ;
 $connection = Database::get_connection();
 $HuissierClass = new Huissier($connection) ;
-$data = $HuissierClass -> getUser("huissier",$_GET['id']);
+$data = $HuissierClass -> getUser("huissiers",$_GET['id']);
 $villeClass = new ville($connection) ;
 $allvilles = $villeClass -> getAll() ;
 include_once "..\src\Views\Gestion\Formulaires\EditHuissier.php";
