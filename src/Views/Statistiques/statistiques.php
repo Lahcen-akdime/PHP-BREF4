@@ -41,15 +41,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $countAll = 0 ;
+                        <?php
                          foreach ($allvilles as $key) {?>
                             <tr>
                                 <td><?= $key['name'] ?></td>
-                                <td><?= $villeClass->gitCountByVille("avocat",$key['id']) ?></td>
-                                <td><?= $villeClass->gitCountByVille("huissier",$key['id']) ?></td>
-                                <td><?php $countAll += $villeClass->gitCountByVille("avocat",$key['id'])+$villeClass->gitCountByVille("huissier",$key['id']); echo $countAll ?></td>
+                                <td><?= $count1 = $villeClass->gitCountByVille("avocat",$key['id']) ?></td>
+                                <td><?= $count2 = $villeClass->gitCountByVille("huissier",$key['id']) ?></td>
+                                <td><?= $count1+$count2?></td>
                             </tr>
-                        <?php $countAll = 0 ;  }  ?>
+                        <?php }  ?>
                     </tbody>
                 </table>
             </div>

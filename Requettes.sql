@@ -10,6 +10,7 @@ CREATE TABLE AVOCAT (
  consultation_en_ligne bool DEFAULT true ,
  Annes_dex int not null ,
  ville_id int ,
+ role ENUM('avocat','huissier','admin','client') ,
  FOREIGN KEY (ville_id) REFERENCES ville(id)
  ON DELETE SET NULL
 );
@@ -21,6 +22,7 @@ CREATE TABLE HUISSIER (
  consultation_en_ligne bool DEFAULT true ,
  Annes_dex int not null ,
  ville_id int ,
+  role ENUM('avocat','huissier','admin','client') ,
  FOREIGN KEY (ville_id) REFERENCES ville(id)
  ON DELETE SET NULL
 )
