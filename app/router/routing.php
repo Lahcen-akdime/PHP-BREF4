@@ -19,7 +19,7 @@ class Routing{
         require_once __DIR__."/../Controller/".self::$controllers[$page].".php";
         }
         else{
-            echo "404";
+        echo "404";
         }
     }
 }

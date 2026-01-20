@@ -30,7 +30,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     else{
         // its avocat user
     $specialite = $_POST['specialite'];
-    $AvocatClass -> create("avocat",'specialite',$name,$specialite,
+    $AvocatClass -> create("avocats",'specialite',$name,$specialite,
                             $consultation_en_ligne,$Annes_dex,$ville_id);
        echo '<script type="text/javascript">
            window.location = "avocats";
