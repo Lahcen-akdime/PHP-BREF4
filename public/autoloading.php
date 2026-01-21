@@ -1,4 +1,8 @@
 <?php
 spl_autoload_register(function(string $className){
-require_once "../app/$className.php";
+$pa = __DIR__ . "\\..\\" . '/app/' . $className . ".php";
+$fille = str_replace('\\', '/', $pa);
+if(file_exists($fille)){
+    require $fille;
+}
 });
