@@ -18,7 +18,8 @@ class Routing
         "json" => "jsonController",
         "client" => "ClientController",
         "demande" => "DemandeController",
-        "pagination" => "paginationController"
+        "pagination" => "paginationController" ,
+        "calendar" => "DemandeController"
     ];
     public static function dispatch()
     {
