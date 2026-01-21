@@ -62,6 +62,7 @@
 
         <div class="roster-grid" id="results">
         </div>
+        <div id="booking-modal" class="modal"></div>
     </div>
 </body>
 
