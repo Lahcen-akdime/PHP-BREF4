@@ -2,6 +2,7 @@
 namespace models ;
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
+    protected int $id = 12;
     protected int $Annes_dex ;
     protected int $ville_id ;
     protected float $taarif;
@@ -46,4 +47,28 @@ class Professionel extends User {
     $data = self::$connection -> query("SELECT * FROM $tableName Limit 4 OFFSET $startIn") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
+
+
+    public function getid(){
+        return $this->id;
+    }
+
+      // (dashbord) total des hueres to proffissionnele 
+       public function TotalHeures($id){
+               $stmt = self::$connection->prepare("SELECT SUM(rendez_vous.heures) FROM rendez_vous  
+                    JOIN demandes ON rendez_vous.demande_id = demandes.id
+                    WHERE demandes.professionel_id = :id AND demandes.status  = 'Accepted'");
+                    $stmt->execute([':id'=>$id]);
+                    $result = $stmt->fetchColumn();
+           return $result;
+       }
+
+    // (Dashbord)calculer chiffre d'affaires de proffissionnele
+    public function ChiffreDaffaires($heures){
+        $chiffreDaffaire = $heures * $this->taarif ;
+        return $chiffreDaffaire;
+    }
+
+
+
 }
