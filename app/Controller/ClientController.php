@@ -53,11 +53,29 @@ class ClientController
 
         $this->index();
     }
+    public function getAvailability()
+    {
+
+        header("Content-Type: application/json");
+        $id = $_GET['id'] ?? null;
+        if ($id) {
+            $data = $this->clientModel->getProfessionalById($id);
+            if ($data) {
+                echo json_encode($data['disponibilite']);
+            }
+        }
+    }
 }
 
 $controller = new ClientController();
-if (isset($_GET['action']) && $_GET['action'] === 'search') {
-    $controller->search();
+if (isset($_GET['action'])) {
+    if ($_GET['action'] === 'search') {
+        $controller->search();
+    } elseif ($_GET['action'] === 'getAvailability') {
+        $controller->getAvailability();
+    } else {
+        $controller->index();
+    }
 } else {
     $controller->index();
 }

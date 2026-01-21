@@ -46,4 +46,20 @@ class Client extends User
         $stmt->execute($params);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getProfessionalById($id) {
+        $stmt = self::$connection->prepare("SELECT role FROM users WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        $user = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$user) return null;
+        $table = ($user['role'] === 'avocat') ? 'avocats' : 'huissiers';
+        
+        $sql = "SELECT id, name, email, role, disponibilite 
+                FROM $table 
+                WHERE id = :id";
+        
+        $stmt = self::$connection->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
