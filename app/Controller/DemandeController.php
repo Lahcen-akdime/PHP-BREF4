@@ -40,17 +40,8 @@ class DemandeController
             }
         }
     }
-    public function goToCalendar(){
+    public static function goToCalendar(){
     include_once "..\src\Views\Profitionel\Calendar.php";
     }
 }
 
-$controller = new DemandeController();
-if (isset($_GET['action'])) {
-    if ($_GET['action'] === 'store') {
-        $controller->store();
-    }
-}
-if(isset($_GET['calendar'])){
-     $controller->goToCalendar();
-}
