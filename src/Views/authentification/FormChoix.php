@@ -6,6 +6,15 @@
     <title>Login</title>
        <link rel="stylesheet" href="/PHP-BREF4/src/Views/authentification/style.css">
 </head>
+
+    <!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">LegalHub</div>
+    <div>
+        <a href="Login" class="nav-button logout">Login</a>
+    </div>
+</div>
+
 <div class="auth-choice-wrapper">
 
   <div class="auth-choice-card">

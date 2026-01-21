@@ -22,7 +22,7 @@
 <div class="container">
     <div class="card">
         <h2>Connexion</h2>
-        <form method = "POST" action= "Login" >
+        <form method = "POST" action= "auth/Login" >
             <div class="input-group">
                 <input type="email" placeholder="Email" name = 'email' required>
             </div>
@@ -33,7 +33,7 @@
         </form>
 
         <div class="switch">
-            Pas de compte ? <a href="SignUp">Créer un compte</a>
+            Pas de compte ? <a href="signup">Créer un compte</a>
         </div>
     </div>
 </div>

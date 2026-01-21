@@ -6,10 +6,11 @@ class User{
     protected ?string $name ;
     protected ?string $email;
     protected ?string $password;
-    protected ?array $role;
+    protected ?string $role;
 
-    public function __construct(?int $id = null, ?string $email = null, ?string $password = null, ?array $role = null)
+    public function __construct(?int $id = null, ?string $name = null, ?string $email = null, ?string $password = null, ?string $role = null)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->role = $role;
@@ -17,18 +18,18 @@ class User{
     }
 
     public function getId(): ?int{
-        return $this->$id;
+        return $this->id;
     }
     public function getName(): ?string{
-        return $this->$name;
+        return $this->name;
     }
     public function getPassword(): ?string{
-        return $this->$passowrd;
+        return $this->password;
     }
     public function getRole(): ?string{
-        return $this->$role;
+        return $this->role;
     }
-    public function getEmail(): ?stirng{
-        return $this->$email;
+    public function getEmail(): ?string{
+        return $this->email;
     }
 }

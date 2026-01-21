@@ -1,44 +1,49 @@
 <?php
 namespace router ;
+use Controller;
+use render\View;
 class Routing{
     private static array $controllers = ["avocats"=>"avocatsController",
                                         "huissier"=>"huissierController",
                                         "home"=>"homeController",
                                         "dashboard"=>"dashboardController",
-                                        "Statistiques"=>"statistiquesController",
-                                        "Create"=>"CreateController",
-                                        "DeleteAvocat"=>"DeleteAvocatController",
-                                        "DeleteHuissier"=>"DeleteHuissierController",
+                                        "statistiques"=>"statistiquesController",
+                                        "create"=>"CreateController",
+                                        "deleteAvocat"=>"DeleteAvocatController",
+                                        "deleteHuissier"=>"DeleteHuissierController",
                                         "editHuissier"=>"editHuissierController",
                                         "editAvocat"=>"editAvocatController",
                                         "json"=>"jsonController",
                                         "pagination"=>"paginationController",
-                                        "Auth"=>"AuthController",
-                                        "Form"=>"AuthController",
+                                        "auth"=>"AuthController",
+                                        "form"=>"AuthController",
                                         "client" => "ClientController",
                                         "demande" => "DemandeController"
                                         ];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
         $parts = explode('/', $page);
-        $controllerKey = $parts[0];
+        $controllerKey = strtolower($parts[0]);
         $methode = $parts[1] ?? null;
+        $controllerName = "Controller\\" . self::$controllers[$controllerKey];
         
         if(array_key_exists($controllerKey,self::$controllers)){
-        require_once __DIR__."/../Controller/".self::$controllers[$controllerKey].".php";
+            new $controllerName();
         }
         else{
         echo "404 C";
         }
 
-        if($methode == null){
+        if(!$methode) {
+            View::render('Dashboards/home');
             return;
-        }
-        $controllerName = self::$controllers[$controllerKey];
+            }
+        
         if(!method_exists($controllerName, $methode)){
             echo "404 M";
             exit;
         }
+
         $controllerName::$methode();
 
     }

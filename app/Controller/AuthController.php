@@ -1,33 +1,45 @@
 <?php
+namespace Controller;
+Use Services\Database;
 use render\View;
 use Services\AuthValidation;
+use models\Repository\RepositorySignUp;
 class AuthController{
-    public static function Login()
+
+    public static function login()
     {
         View::render('authentification/Login');
-        $valid = new AuthValidation();
-        $valid->Login();
-
     }
 
-    public static function SignUp()
+    public static function signUp()
     {
-        View::render('authentification/SignUp');
+    View::render('authentification/signup');
+        if(isset($_POST['submitSignup'])){
+            $validation = new AuthValidation;
+            $resu = $validation->ValidationsignUp();
+            if(isset($resu)){
+            $con = Database::get_connection();
+            $sendData = new RepositorySignUp($con);
+            $sendData->creat($resu);
+            var_dump($sendData->creat($resu));
+            }
+        }
+
     }
 
-    public static function LogOut()
+    public static function logOut()
     {
         View::render('authentification/LogOut');
     }
-    public static function Form()
+    public static function form()
     {
         View::render('authentification/FormChoix');
     }
-    public static function FormDire()
+    public static function formDire()
     {
-        if(isset($_POST['role']) && $_POST['role'] == 'CLIENT'){
-            header('location:/PHP-BREF4/Auth/Login');
-            $_SESSION['role'] = 'CLIENT';
+        if(isset($_POST['role']) && $_POST['role'] == 'client'){
+            header('location:/PHP-BREF4/Auth/signup');
+            $_SESSION['role'] = 'client';
         }else{
             header('location:/PHP-BREF4/Auth/Pro');
         }
