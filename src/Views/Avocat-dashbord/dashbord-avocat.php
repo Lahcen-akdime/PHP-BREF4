@@ -274,7 +274,7 @@
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-icon">👥</div>
-                <div class="stat-number">24</div>
+                <div class="stat-number"><?= $ClientsUnique ?></div>
                 <div class="stat-label">Clients Uniques</div>
                 <div class="stat-subtitle">Cette année</div>
             </div>
@@ -288,7 +288,7 @@
 
             <div class="stat-card">
                 <div class="stat-icon">💰</div>
-                <div class="stat-number">48,000 DH</div>
+                <div class="stat-number"><?= $chiffreDaffaire ?> DH</div>
                 <div class="stat-label">Chiffre d'Affaires</div>
                 <div class="stat-subtitle">+15% par rapport à l'année dernière</div>
             </div>

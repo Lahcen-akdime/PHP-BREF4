@@ -1,11 +1,14 @@
 <?php
 namespace models ;
+
+use LDAP\Result;
+
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
-    protected int $id = 12;
+    protected int $id=12 ;
+    protected float $taarif=230;
     protected int $Annes_dex ;
     protected int $ville_id ;
-    protected float $taarif;
     protected array $document;
     protected static \PDO $connection ;
     protected object $disponibilite;
@@ -60,15 +63,33 @@ class Professionel extends User {
                     WHERE demandes.professionel_id = :id AND demandes.status  = 'Accepted'");
                     $stmt->execute([':id'=>$id]);
                     $result = $stmt->fetchColumn();
-           return $result;
+                    if($result)
+                       return $result;
+                     else{
+                         return 0;
+                     }
        }
 
     // (Dashbord)calculer chiffre d'affaires de proffissionnele
     public function ChiffreDaffaires($heures){
         $chiffreDaffaire = $heures * $this->taarif ;
-        return $chiffreDaffaire;
+        if($chiffreDaffaire)
+           return $chiffreDaffaire;
+        else
+           return 0;
     }
 
+
+    // (dashbord) clients uniques
+    public function ClientsUnique(){
+        $stmt = self::$connection->prepare("SELECT DISTINCT COUNT(*) FROM rendez_vous");
+        $stmt->execute();
+        $result =$stmt->fetchColumn();
+        if($result)
+            return $result;
+        else 
+            return 0;
+    }
 
 
 }

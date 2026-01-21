@@ -1,10 +1,8 @@
 <?php
 namespace Controller;
 
-// use models\Huissier ;
 // use models\Ville ;
 // use models\Avocat ;
-// $huissierClass = new Huissier($connection);
 // $villeClass = new ville($connection);
 // $avocatsSum = sizeof($avocatClass -> getAll("avocats"));
 // $huissierSum = sizeof($huissierClass -> getAll("huissiers"));
@@ -12,15 +10,31 @@ namespace Controller;
 // $allvilles = $villeClass -> getAll() ;
 // include_once "./src/Views/Avocat-dashbord/dashbord-avocat.php";
 use models\Avocat;
+use models\Huissier ;
 use Services\Database ;
 $connection = Database::get_connection();
+
 $avocatClass = new Avocat($connection);
+$huissierClass = new Huissier($connection);
 
 use render\View;
-    $id = $avocatClass -> getid();
+    $idAvocat = $avocatClass->getid();
+
+    $totalClientsAvocat = $avocatClass->ClientsUnique();
     
-      $lesHeures = $avocatClass->TotalHeures($id);
-      View::render("Avocat-dashbord/dashbord-avocat",["heures"=>$lesHeures]);
+    $lesHeuresAvocat = $avocatClass->TotalHeures($idAvocat);
+    $ChiffreDaffaireAvocat = $avocatClass->ChiffreDaffaires($lesHeuresAvocat);
+      View::render("Avocat-dashbord/dashbord-avocat",["heures"=>$lesHeuresAvocat,
+                                                     "chiffreDaffaire"=>$ChiffreDaffaireAvocat,
+                                                     "ClientsUnique"=>$totalClientsAvocat]);
 
+    $idHuissier = $huissierClass->getid();
 
+    $totalClientsHuissier = $huissierClass->ClientsUnique();
+
+    $lesHeuresHuissier = $huissierClass->TotalHeures($idHuissier);
+    $ChiffreDaffaireHuissier = $huissierClass->ChiffreDaffaires($lesHeuresHuissier);
+      View::render("Huissier-dashbord/dashbord-huissier",["heures"=>$lesHeuresHuissier,
+                                                     "chiffreDaffaire"=>$ChiffreDaffaireHuissier,
+                                                     "ClientsUnique"=>$totalClientsHuissier]);
 
