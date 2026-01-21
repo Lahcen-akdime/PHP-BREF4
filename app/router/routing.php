@@ -12,6 +12,7 @@ class Routing{
                                         "editHuissier"=>"editHuissierController",
                                         "editAvocat"=>"editAvocatController",
                                         "json"=>"jsonController",
+                                        "client" => "ClientController",
                                         "pagination"=>"paginationController"];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
