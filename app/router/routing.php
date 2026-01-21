@@ -13,7 +13,9 @@ class Routing{
                                         "editAvocat"=>"editAvocatController",
                                         "json"=>"jsonController",
                                         "pagination"=>"paginationController",
-                                        "Auth"=>"AuthController"
+                                        "Auth"=>"AuthController",
+                                        "client" => "ClientController",
+                                        "demande" => "DemandeController"
                                         ];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
