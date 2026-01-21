@@ -46,4 +46,5 @@ class Professionel extends User {
     $data = self::$connection -> query("SELECT * FROM $tableName Limit 4 OFFSET $startIn") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
+    
 }
