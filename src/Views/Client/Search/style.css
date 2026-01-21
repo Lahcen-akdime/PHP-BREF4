@@ -1,0 +1,22 @@
+.page-header {
+  text-align: center;
+  padding: 40px 0;
+}
+.controls-extended {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  background: rgba(30, 41, 59, 0.4);
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(6, 182, 212, 0.1);
+  margin-bottom: 40px;
+}
+.no-results {
+  text-align: center;
+  grid-column: 1 / -1;
+  padding: 40px;
+  color: #94a3b8;
+  font-size: 1.2rem;
+}
