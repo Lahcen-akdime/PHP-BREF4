@@ -1,5 +1,68 @@
+// ____ _______ Full Calender ______ _____ _ __ //
+ document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
 
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      initialDate: '2026-01-01',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      events: [
+        {
+          title: 'W9t n3aaas',
+          start: '2026-01-25',
+          end : '2026-01-26'
+        },
+        {
+          title: 'Long Event',
+          start: '2025-12-07',
+          end: '2025-12-10'
+        },
+        {
+          groupId: '999',
+          title: 'Repeating Event',
+          start: '2025-12-09T16:00:00'
+        },
+        {
+          groupId: '999',
+          title: 'Repeating Event',
+          start: '2025-12-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2025-12-11',
+          end: '2025-12-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2025-12-12T10:30:00',
+          end: '2025-12-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2025-12-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2025-12-12T14:30:00'
+        },
+        {
+          title: 'Birthday Party',
+          start: '2025-12-13T07:00:00'
+        },
+        {
+          title: 'knt na3es',
+        //   url: 'https://google.com/',
+          start: '2025-12-28'
+        }
+      ]
+    });
 
+    calendar.render();
+  });
 // _ _____ _____ search part ____ ______ ______ //
 
 let search = document.getElementById("searchInput");

@@ -18,7 +18,7 @@ class Routing{
                                         "auth"=>"AuthController",
                                         "form"=>"AuthController",
                                         "client" => "ClientController",
-                                        "demande" => "DemandeController"
+                                        "demandes" => "DemandeController"
                                         ];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
@@ -45,6 +45,7 @@ class Routing{
         }
 
         $controllerName::$methode();
+        
 
     }
 }

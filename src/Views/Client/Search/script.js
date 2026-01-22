@@ -104,7 +104,8 @@ async function openBookingModal(id) {
 let calendarState = {
     currentDate: new Date(),
     selectedDate: null,
-    selectedTime: null,
+    selectedStartTime: null,
+    selectedEndTime: null,
     schedule: {},
     proId: null
 };
@@ -114,15 +115,16 @@ function showModal(data, proId) {
     if (typeof data === 'string') {
         try { schedule = JSON.parse(data); } catch (e) { schedule = {}; }
     }
-    
     calendarState.schedule = {};
     for (let key in schedule) {
         calendarState.schedule[key.toLowerCase()] = schedule[key];
     }
-    
     calendarState.proId = proId;
     calendarState.selectedDate = null;
-    calendarState.selectedTime = null;
+    calendarState.selectedStartTime = null;
+    calendarState.selectedEndTime = null;
+    console.log(calendarState);
+    
 
     const modal = document.getElementById('booking-modal');
     modal.innerHTML = `
@@ -161,9 +163,10 @@ function renderDualCalendar() {
     const today = new Date();
     const dateLeft = new Date(calendarState.currentDate);
     dateLeft.setDate(1);
-    
+    console.log(dateLeft)
     const dateRight = new Date(dateLeft);
     dateRight.setMonth(dateRight.getMonth() + 1);
+    console.log(dateRight)
 
     document.getElementById('calendar-header-left').innerText = 
         dateLeft.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
@@ -248,7 +251,8 @@ function onDateSelect(dateStr, slots, cellElement) {
     cellElement.classList.add('selected');
     
     calendarState.selectedDate = dateStr;
-    calendarState.selectedTime = null;
+    calendarState.selectedStartTime = null;
+    calendarState.selectedEndTime = null;
     document.getElementById('btn-validate').disabled = true;
 
     const area = document.getElementById('slots-area');
@@ -278,29 +282,58 @@ function onDateSelect(dateStr, slots, cellElement) {
 }
 
 function onTimeSelect(time, btn) {
-    calendarState.selectedTime = time;
-    document.querySelectorAll('.time-slot-pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (!calendarState.selectedStartTime || (calendarState.selectedStartTime && calendarState.selectedEndTime)) {
+        calendarState.selectedStartTime = time;
+        calendarState.selectedEndTime = null;
+    } else {
+        if (time < calendarState.selectedStartTime) {
+            calendarState.selectedStartTime = time;
+        } else if (time > calendarState.selectedStartTime) {
+            calendarState.selectedEndTime = time;
+        }
+    }
+    updateTimeSlotVisuals();
     
-    document.getElementById('btn-validate').disabled = false;
+    const isValid = calendarState.selectedStartTime && calendarState.selectedEndTime;
+    document.getElementById('btn-validate').disabled = !isValid;
+}
+
+function updateTimeSlotVisuals() {
+    const pills = document.querySelectorAll('.time-slot-pill');
+    const start = calendarState.selectedStartTime;
+    const end = calendarState.selectedEndTime;
+
+    pills.forEach(p => {
+        const time = p.innerText;
+        p.classList.remove('active');
+        
+        if (start && !end) {
+            if (time === start) p.classList.add('active');
+        } else if (start && end) {
+            if (time >= start && time <= end) p.classList.add('active');
+        }
+    });
 }
 
 async function submitBooking() {
-    if(!calendarState.selectedDate || !calendarState.selectedTime) return;
+    if(!calendarState.selectedDate || !calendarState.selectedStartTime || !calendarState.selectedEndTime) return;
 
-    const startDateTime = `${calendarState.selectedDate} ${calendarState.selectedTime}`;
+    const startDateTime = `${calendarState.selectedDate} ${calendarState.selectedStartTime}`;
+    const endDateTime = `${calendarState.selectedDate} ${calendarState.selectedEndTime}`;
+    
     const btn = document.getElementById('btn-validate');
     btn.innerText = "Traitement...";
     btn.disabled = true;
 
     try {
-        const response = await fetch('index.php?page=demande&action=store', {
+        const response = await fetch('index.php?page=demandes&action=store', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 client_id: 1, 
                 professionel_id: calendarState.proId,
-                start_datetime: startDateTime
+                start_datetime: startDateTime,
+                end_datetime: endDateTime
             })
         });
 
