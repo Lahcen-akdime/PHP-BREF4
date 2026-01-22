@@ -14,6 +14,7 @@ class Routing{
                                         "json"=>"jsonController",
                                         "pagination"=>"paginationController",
                                         "Auth"=>"AuthController",
+                                        "Form"=>"AuthController",
                                         "client" => "ClientController",
                                         "demande" => "DemandeController"
                                         ];

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-       <link rel="stylesheet" href="/PHP-BREF4/src/Views/Public/style.css">
+       <link rel="stylesheet" href="/PHP-BREF4/src/Views/authentification/style.css">
 </head>
 
 
@@ -22,9 +22,9 @@
 <div class="container">
     <div class="card">
         <h2>Connexion</h2>
-        <form>
+        <form method = "POST" action= "Login" >
             <div class="input-group">
-                <input type="email" placeholder="Email" required>
+                <input type="email" placeholder="Email" name = 'email' required>
             </div>
             <div class="input-group">
                 <input type="password" placeholder="Mot de passe" required>

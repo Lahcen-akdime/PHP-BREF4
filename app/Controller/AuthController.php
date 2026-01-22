@@ -1,22 +1,27 @@
 <?php
+use render\View;
+use Services\AuthValidation;
 class AuthController{
     public static function Login()
     {
-        require "..\src\Views\authentification\Login.php";
+        View::render('authentification/Login');
+        $valid = new AuthValidation();
+        $valid->Login();
+
     }
 
     public static function SignUp()
     {
-        require "..\src\Views\authentification\SignUP.php";
+        View::render('authentification/SignUp');
     }
 
     public static function LogOut()
     {
-        require "..\src\Views\authentification\Login.php";
+        View::render('authentification/LogOut');
     }
     public static function Form()
     {
-        require "..\src\Views\authentification\FormChoix.php";
+        View::render('authentification/FormChoix');
     }
     public static function FormDire()
     {
