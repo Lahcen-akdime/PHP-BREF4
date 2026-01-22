@@ -17,7 +17,7 @@ class Routing
         "editAvocat" => "editAvocatController",
         "json" => "jsonController",
         "client" => "ClientController",
-        "demande" => "DemandeController",
+        "demandes" => "DemandeController",
         "pagination" => "paginationController"
     ];
     public static function dispatch()
