@@ -1,5 +1,6 @@
 <?php
 namespace models ;
+use PDO;
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
     protected int $Annes_dex ;
@@ -46,5 +47,10 @@ class Professionel extends User {
     $data = self::$connection -> query("SELECT * FROM $tableName Limit 4 OFFSET $startIn") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
-    
+     public static function save($connection,$table,$name,$email,$password,$role,$spictype,$consultation_en_ligne,$annes_dex,$status,$taarif,$document,$Ville_id,$disponibilite){
+            $sql = "INSERT INTO $table(name,email,password,role,spictype,consultation_en_ligne,annes_dex,status,taarif,document,Ville_id,disponibilite) VALUES(:name,:email,:password,:role,:spictype,:consultation_en_ligne,:annes_dex,:status,:taarif,:document,:Ville_id,:disponibilite)";
+            $reprepare = $connection->prepare($sql);
+            $reprepare->execute();
+            $reprepare->fetch(PDO::FETCH_ASSOC);
+        }
 }
