@@ -2,6 +2,8 @@
 
 namespace router;
 
+use render\View;
+
 class Routing
 {
     private static array $controllers = [
@@ -23,10 +25,26 @@ class Routing
     public static function dispatch()
     {
         $page = $_GET['page'] ?? "home";
-        if (array_key_exists($page, self::$controllers)) {
-            require_once __DIR__ . "/../Controller/" . self::$controllers[$page] . ".php";
+        $parts = explode('/', $page);
+        $controllerKey = strtolower($parts[0]);
+        $methode = $parts[1] ?? null;
+        $controllerName = "Controller\\" . self::$controllers[$controllerKey];
+        if (array_key_exists($controllerKey, self::$controllers)) {
+            new $controllerName();
         } else {
-            echo "404";
+            echo "404 C";
         }
+
+        if (!$methode) {
+            View::render('Dashboards/home');
+            return;
+        }
+
+        if (!method_exists($controllerName, $methode)) {
+            echo "404 M";
+            exit;
+        }
+
+        (new $controllerName())->$methode();
     }
 }

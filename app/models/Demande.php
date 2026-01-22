@@ -3,6 +3,7 @@
 namespace models;
 
 use PDO;
+use PDOException;
 
 class Demande
 {
@@ -16,7 +17,15 @@ class Demande
     {
         $this->db = $db;
     }
-
+    public function find(int $id){
+        try{
+            $stmt = $this->db->prepare("SELECT * from demandes where client_id = :id");
+            $stmt->execute([':id'=>$id]);
+            return $stmt->fetchAll();
+        }catch(PDOException){
+            return false;
+        }
+    }
     public function findallPending()
     {
         try {

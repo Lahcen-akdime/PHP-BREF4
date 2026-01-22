@@ -26,11 +26,12 @@ async function performSearch() {
     if (type) extraParam = `&specialite=${type}`;
   }
 
-  const url = `index.php?page=client&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
+  const url = `index.php?page=client/search&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     renderResults(data, role);
   } catch (error) {
     console.error("Error:", error);
@@ -72,6 +73,10 @@ function renderResults(data, role) {
                 <div class="detail-row">
                     <span class="detail-label">Localisation</span>
                     <span class="detail-value">${item.ville_name || "Ville Inconnue"}</span> 
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Honoraires</span>
+                    <span class="detail-value">${item.taarif ? item.taarif + " DH" : "Non spécifié"}</span> 
                 </div>
                 <span class="consultation-badge ${isOnline ? "consultation-yes" : "consultation-no"}">
                     ${isOnline ? "✓ Consultation En Ligne" : "✖️ Pas de consultation"}

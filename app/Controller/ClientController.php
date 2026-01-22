@@ -3,6 +3,7 @@
 namespace Controller;
 
 use models\Client;
+use models\Demande;
 use models\Ville;
 use Services\Database;
 use render\View;
@@ -12,12 +13,14 @@ class ClientController
     private $db;
     private $clientModel;
     private $villeModel;
+    private $demandeModel;
 
     public function __construct()
     {
         $this->db = Database::get_connection();
         $this->clientModel = new Client($this->db);
         $this->villeModel = new Ville($this->db);
+        $this->demandeModel = new Demande($this->db);
     }
 
     public function index()
@@ -27,6 +30,11 @@ class ClientController
         View::render('Client/Search/search', [
             'villes' => $villes
         ]);
+    }
+
+    public function demandes()
+    {
+        $data = $this->demandeModel->find(1);
     }
 
     public function search()
@@ -65,17 +73,4 @@ class ClientController
             }
         }
     }
-}
-
-$controller = new ClientController();
-if (isset($_GET['action'])) {
-    if ($_GET['action'] === 'search') {
-        $controller->search();
-    } elseif ($_GET['action'] === 'getAvailability') {
-        $controller->getAvailability();
-    } else {
-        $controller->index();
-    }
-} else {
-    $controller->index();
 }
