@@ -1,7 +1,7 @@
 <?php
 namespace Services;
 Use Services\Database;
-use models\Repository\RepositorySignUp;
+use models\Repository\UserRepository;
 use models\User;
 class AuthValidation{
 
@@ -29,23 +29,68 @@ class AuthValidation{
                $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
             }
             $pdo = Database::get_connection();
-            $emailDb = new RepositorySignUp($pdo);
+            $emailDb = new UserRepository($pdo);
 
-            $checkem = $emailDb->getByEmail($_POST['email']);
-            var_dump($checkem);
+            $getDb = $emailDb->getByEmail($_POST['email']);
+            $EmailDb = $getDb['email'];
+            // var_dump($checkem);
             if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
                 $_SESSION['error'] = "Email non valide"; 
                header("location:signup");
                 exit;          
-            }elseif(isset($checkem)){
+            }elseif(isset($EmailDb)){
                 $_SESSION['error'] = "Email Deja utilise";
                header("location:signup");   
                 exit;
             }else{
                 $email = $this->verfier($_POST['email']);
-                $user = new User(null,$name , $email, $password, $role);
+                $user = new User(null,$name , $email, $passwordHashed, $role);
+                $_SESSION['success'] = "Creation success, Veuillez entrer Votre Compte";
+
             // var_dump($user);
             }
     return $user;
+    }
+
+        public function ValidationLogin(){
+            if(empty($_POST['email']) || empty($_POST['password'])){
+            $_SESSION['error'] = "Tous les Champs sont Obligatoires";
+            header("location:login");
+            exit;
+            }else{
+               $email = $this->verfier($_POST['email']);
+               $password = $this->verfier($_POST['password']);
+               $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
+            }
+            $pdo = Database::get_connection();
+            $checkDb = new UserRepository($pdo);
+
+            $getDb = $checkDb->getByEmail($email);
+            $EmailDb = $getDb['email'];
+            $PasswordDb = $getDb['password'];
+
+            if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+                $_SESSION['error'] = "Email non valide"; 
+               header("location:login");
+                exit;          
+            }elseif(!isset($EmailDb)){
+                $_SESSION['error'] = "Email invalide";
+               header("location:login");   
+                exit;
+            }
+
+            if(!isset($PasswordDb)){
+                $_SESSION['error'] = "Password invalide";
+               header("location:login");   
+                exit;
+            }elseif (!password_verify($password, $PasswordDb)) {
+                $_SESSION['error'] = "Password inccorect";
+               header("location:login");   
+                exit;
+            }
+    $_SESSION['role'] = $getDb['role'];
+    $_SESSION['name'] = $getDb['name'];
+
+    return true;
     }
 }

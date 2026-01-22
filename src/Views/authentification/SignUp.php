@@ -17,14 +17,6 @@
 
   <div class="client-signup-card">
 
-    <?php if (!empty($_SESSION['error'])): ?>
-    <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
-    <?php endif; ?>
-
-    <?php if (!empty($_SESSION['success'])): ?>
-        <p style="color:green"><?= $_SESSION['success']; unset($_SESSION['success']); ?></p>
-    <?php endif; ?>
-
     <h2 class="client-signup-title">Créer un compte client</h2>
     <p class="client-signup-subtitle">
       Inscrivez-vous pour réserver vos consultations
@@ -47,6 +39,9 @@
       <div class="client-signup-group">
         <input type="password" placeholder="Confirmer le mot de passe" name = "password2" required>
       </div>
+          <?php if (!empty($_SESSION['error'])): ?>
+          <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+          <?php endif; ?>
 
       <button name = "submitSignup" class="client-signup-btn">
         Créer le compte

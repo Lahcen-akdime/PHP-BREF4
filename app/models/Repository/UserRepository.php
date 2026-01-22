@@ -4,7 +4,7 @@ Use Services\Database;
 use models\User;
 use PDO;
 
-class RepositorySignUp{
+class UserRepository{
     private ?PDO $pdo;
 
     public function __construct(?PDO $pdo)
@@ -25,11 +25,23 @@ class RepositorySignUp{
         ]);
     }
 
-    public function getByEmail($email): ?string
+    public function getByEmail($email): ?array 
     {
-        $stmt = $this->pdo->prepare("SELECT email FROM users WHERE email = :email");
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->execute([':email'=>$email]);
         $result = $stmt->fetch();
-    return $result['email'] ?? null;
+        if (!$result) {
+        return null;
     }
+
+    return $result;
+    }
+
+    // public function getPassword($email): ?string
+    // {
+    //     $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
+    //     $stmt->execute([':email'=>$email]);
+    //     $result = $stmt->fetch();
+    // return $result ?? null;
+    // }
 }
