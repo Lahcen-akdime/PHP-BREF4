@@ -18,11 +18,11 @@
   <div class="client-signup-card">
 
     <?php if (!empty($_SESSION['error'])): ?>
-    <p style="color:green"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+    <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
     <?php endif; ?>
 
     <?php if (!empty($_SESSION['success'])): ?>
-        <p style="color:red"><?= $_SESSION['success']; unset($_SESSION['success']); ?></p>
+        <p style="color:green"><?= $_SESSION['success']; unset($_SESSION['success']); ?></p>
     <?php endif; ?>
 
     <h2 class="client-signup-title">Créer un compte client</h2>

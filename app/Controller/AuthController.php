@@ -21,7 +21,7 @@ class AuthController{
             $con = Database::get_connection();
             $sendData = new RepositorySignUp($con);
             $sendData->creat($resu);
-            var_dump($sendData->creat($resu));
+            $_SESSION['success'] = "Creation succes";
             }
         }
 
@@ -39,7 +39,7 @@ class AuthController{
     {
         if(isset($_POST['role']) && $_POST['role'] == 'client'){
             header('location:/PHP-BREF4/Auth/signup');
-            $_SESSION['role'] = 'client';
+            $_SESSION['role'] = $_POST['role'];
         }else{
             header('location:/PHP-BREF4/Auth/Pro');
         }
