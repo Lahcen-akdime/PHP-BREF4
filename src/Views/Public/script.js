@@ -1,6 +1,25 @@
-// ____ _______ Full Calender ______ _____ _ __ //
+
+
+
  document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
+      // ============================================= GET DATA FROM DATABASE ================================================= //
+// async function getData() {
+//   let response = await fetch("http://localhost/ISTICHARA/json&get");
+//   let data = response.json();
+//   console.log(data);
+//   return data ;
+// }
+// let data = getData();
+// let array ;
+//  data.forEach(element => {
+//        array.push({
+//         title: 'Rendez_vous',
+//         start: (element.date_debut).str.split(" ")[0],
+//         link : (element.date_fin).str.split(" ")[0],
+//        })   
+// })
+// ____ _______ Full Calender ______ _____ _ __ //
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
       initialView: 'dayGridMonth',
@@ -17,52 +36,34 @@
           end : '2026-01-26'
         },
         {
-          title: 'Long Event',
-          start: '2025-12-07',
-          end: '2025-12-10'
-        },
-        {
-          groupId: '999',
-          title: 'Repeating Event',
-          start: '2025-12-09T16:00:00'
-        },
-        {
-          groupId: '999',
-          title: 'Repeating Event',
-          start: '2025-12-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2025-12-11',
-          end: '2025-12-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2025-12-12T10:30:00',
-          end: '2025-12-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2025-12-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2025-12-12T14:30:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2025-12-13T07:00:00'
-        },
-        {
           title: 'knt na3es',
         //   url: 'https://google.com/',
           start: '2025-12-28'
         }
+        
       ]
+
     });
 
     calendar.render();
-  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // _ _____ _____ search part ____ ______ ______ //
 
 let search = document.getElementById("searchInput");

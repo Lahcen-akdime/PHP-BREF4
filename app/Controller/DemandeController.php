@@ -51,7 +51,8 @@ class DemandeController
         }
     }
     public static function goToCalendar(){
-    include_once "..\src\Views\Profitionel\Calendar.php";}
+    include_once "..\src\Views\Profitionel\Calendar.php";
+    }
 
     public function accept()
     {

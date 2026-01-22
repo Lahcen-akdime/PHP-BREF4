@@ -1,5 +1,6 @@
 <?php
 namespace models ;
+use models\User ;
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
     protected int $Annes_dex ;
