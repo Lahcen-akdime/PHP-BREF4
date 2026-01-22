@@ -281,7 +281,7 @@
 
             <div class="stat-card">
                 <div class="stat-icon">⏱️</div>
-                <div class="stat-number"><?= $heures ?></div>
+                <div class="stat-number"><?= $heures ?> H</div>
                 <div class="stat-label">Heures Travaillées</div>
                 <div class="stat-subtitle">40 heures/mois en moyenne</div>
             </div>

@@ -12,29 +12,49 @@ namespace Controller;
 use models\Avocat;
 use models\Huissier ;
 use Services\Database ;
-$connection = Database::get_connection();
 
-$avocatClass = new Avocat($connection);
-$huissierClass = new Huissier($connection);
 
 use render\View;
+class StatistiquesController{
+  // public function checkUser($user){
+  //   if($user)
+  // }
+  
+  public static function Avocat(){
+    $connection = Database::get_connection();
+    $avocatClass = new Avocat($connection);
     $idAvocat = $avocatClass->getid();
-
+    
     $totalClientsAvocat = $avocatClass->ClientsUnique();
+    $taarifAvocat = $avocatClass->getTaarif($id=11);
     
     $lesHeuresAvocat = $avocatClass->TotalHeures($idAvocat);
-    $ChiffreDaffaireAvocat = $avocatClass->ChiffreDaffaires($lesHeuresAvocat);
-      View::render("Avocat-dashbord/dashbord-avocat",["heures"=>$lesHeuresAvocat,
-                                                     "chiffreDaffaire"=>$ChiffreDaffaireAvocat,
-                                                     "ClientsUnique"=>$totalClientsAvocat]);
-
-    $idHuissier = $huissierClass->getid();
+    $ChiffreDaffaireAvocat = $avocatClass->ChiffreDaffaires($lesHeuresAvocat,$taarifAvocat);
+    View::render("Avocat-dashbord/dashbord-avocat",["heures"=>$lesHeuresAvocat,
+    "chiffreDaffaire"=>$ChiffreDaffaireAvocat,
+    "ClientsUnique"=>$totalClientsAvocat]);
+    
+    }
+    
+    public static function Huissier(){
+      $connection = Database::get_connection();
+      $huissierClass = new Huissier($connection);
+      $idHuissier = $huissierClass->getid();
 
     $totalClientsHuissier = $huissierClass->ClientsUnique();
-
+   $taarifHuissier = $huissierClass->getTaarif($id=12);
+  
+  
     $lesHeuresHuissier = $huissierClass->TotalHeures($idHuissier);
-    $ChiffreDaffaireHuissier = $huissierClass->ChiffreDaffaires($lesHeuresHuissier);
+    $ChiffreDaffaireHuissier = $huissierClass->ChiffreDaffaires($lesHeuresHuissier,$taarifHuissier);
       View::render("Huissier-dashbord/dashbord-huissier",["heures"=>$lesHeuresHuissier,
                                                      "chiffreDaffaire"=>$ChiffreDaffaireHuissier,
                                                      "ClientsUnique"=>$totalClientsHuissier]);
+}
+}
+
+// StatistiquesController::Avocat();
+// StatistiquesController::Huissier();
+
+
 

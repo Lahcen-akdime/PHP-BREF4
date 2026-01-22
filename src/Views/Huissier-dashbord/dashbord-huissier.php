@@ -274,21 +274,27 @@
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-icon">👥</div>
-                <div class="stat-number"><?= $ClientsUnique ?></div>
+                <div class="stat-number"><?php
+                //  $ClientsUnique 
+                 ?></div>
                 <div class="stat-label">Clients Uniques</div>
                 <div class="stat-subtitle">Cette année</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-icon">⏱️</div>
-                <div class="stat-number"><?= $heures ?></div>
+                <div class="stat-number"><?php
+                //  $heures 
+                 ?></div>
                 <div class="stat-label">Heures Travaillées</div>
                 <div class="stat-subtitle">43 heures/mois en moyenne</div>
             </div>
 
             <div class="stat-card">
                 <div class="stat-icon">💰</div>
-                <div class="stat-number"><?= $chiffreDaffaire ?> DH</div>
+                <div class="stat-number"><?php
+                // $chiffreDaffaire 
+                ?> DH</div>
                 <div class="stat-label">Chiffre d'Affaires</div>
                 <div class="stat-subtitle">+22% par rapport à l'année dernière</div>
             </div>

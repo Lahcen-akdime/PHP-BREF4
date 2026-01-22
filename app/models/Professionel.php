@@ -5,7 +5,7 @@ use LDAP\Result;
 
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
-    protected int $id=12 ;
+    protected int $id=11;
     protected float $taarif=230;
     protected int $Annes_dex ;
     protected int $ville_id ;
@@ -70,9 +70,20 @@ class Professionel extends User {
                      }
        }
 
+    //  taarif de proffessionel
+    public function getTaarif($id){
+        $stmt = self::$connection->prepare("SELECT taarif FROM avocats WHERE id=:id");
+        $stmt->execute([':id'=>$id]);
+        $result = $stmt->fetchColumn();
+        if($result)
+        return $result;
+    else
+        return 0;
+    }
+
     // (Dashbord)calculer chiffre d'affaires de proffissionnele
-    public function ChiffreDaffaires($heures){
-        $chiffreDaffaire = $heures * $this->taarif ;
+    public function ChiffreDaffaires($heures,$taarif){
+        $chiffreDaffaire = $heures * $taarif ;
         if($chiffreDaffaire)
            return $chiffreDaffaire;
         else
@@ -81,15 +92,17 @@ class Professionel extends User {
 
 
     // (dashbord) clients uniques
-    public function ClientsUnique(){
-        $stmt = self::$connection->prepare("SELECT DISTINCT COUNT(*) FROM rendez_vous");
-        $stmt->execute();
+    public function ClientsUnique($id=11){
+        $stmt = self::$connection->prepare("SELECT DISTINCT COUNT(*)  FROM demandes 
+                          WHERE professionel_id=:id AND status='Accepted'");
+        $stmt->execute(['id'=>$id]);
         $result =$stmt->fetchColumn();
         if($result)
             return $result;
         else 
             return 0;
     }
+    
 
 
 }
