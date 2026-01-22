@@ -5,7 +5,6 @@ use LDAP\Result;
 
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
-    protected int $id=11;
     protected float $taarif=230;
     protected int $Annes_dex ;
     protected int $ville_id ;
@@ -49,11 +48,6 @@ class Professionel extends User {
     $startIn = ($currentPage - 1) * 4 ;
     $data = self::$connection -> query("SELECT * FROM $tableName Limit 4 OFFSET $startIn") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
-    }
-
-
-    public function getid(){
-        return $this->id;
     }
 
       // (dashbord) total des hueres to proffissionnele 

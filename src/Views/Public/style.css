@@ -452,6 +452,8 @@
             }
         }
 
+
+
         @media (max-width: 1024px) {
             .controls-wrapper {
                 grid-template-columns: 1fr;
