@@ -23,7 +23,7 @@ demande_id int,
 FOREIGN KEY (demande_id) REFERENCES demandes(id),
 date_debut TIMESTAMP ,
 date_fin TIMESTAMP,
-heures decimal(1,2)
+heures decimal(10,2)
 )
 
 CREATE TABLE villes (

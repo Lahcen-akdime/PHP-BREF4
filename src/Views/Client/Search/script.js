@@ -326,7 +326,7 @@ async function submitBooking() {
     btn.disabled = true;
 
     try {
-        const response = await fetch('index.php?page=demande&action=store', {
+        const response = await fetch('index.php?page=demandes&action=store', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

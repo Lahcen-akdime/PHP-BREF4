@@ -57,7 +57,7 @@ class DemandeController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $input = json_decode(file_get_contents('php://input'), true);
             $demande_id = $input['demande_id'] ?? null;
-            $status = $input['status'] ?? 'Accepted';
+            $status = $input['status'];
             $link = $input['link'] ?? null;
             $duration = $input['duration'] ?? 0;
 

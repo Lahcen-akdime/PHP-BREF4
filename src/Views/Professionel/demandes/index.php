@@ -268,7 +268,6 @@
                 if (result.success) {
                     showNotification('Status mis à jour avec succès!', 'success');
 
-                    // Remove the row from the table without reloading
                     const row = document.getElementById(`row-${id}`);
                     if (row) {
                         row.style.transition = 'all 0.5s ease';
