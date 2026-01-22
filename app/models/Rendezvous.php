@@ -1,11 +1,35 @@
 <?php
+
 namespace models;
 
 use DateTime;
 
-class Rendezvous{
+class Rendezvous
+{
+    private $db;
     private int $id;
     private string $link;
     private DateTime $date_debut;
     private DateTime $date_fin;
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
+    public function create($demande_id, $link, $date_debut, $date_fin, $heures)
+    {
+        try {
+            $stmt = $this->db->prepare("INSERT INTO rendez_vous (demande_id, link, date_debut, date_fin, heures) VALUES (:demande_id, :link, :date_debut, :date_fin, :heures)");
+            $stmt->execute([
+                ':demande_id' => $demande_id,
+                ':link' => $link,
+                ':date_debut' => $date_debut,
+                ':date_fin' => $date_fin,
+                ':heures' => $heures
+            ]);
+            return true;
+        } catch (\PDOException $e) {
+            return false;
+        }
+    }
 }
