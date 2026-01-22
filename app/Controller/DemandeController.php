@@ -50,13 +50,59 @@ class DemandeController
             }
         }
     }
-   
+    public function accept()
+    {
+        header('Content-Type: application/json');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+            $demande_id = $input['demande_id'] ?? null;
+            $status = $input['status'] ?? 'Accepted';
+            $link = $input['link'] ?? null;
+            $duration = $input['duration'] ?? 0;
+
+            if (!$demande_id) {
+                echo json_encode(['success' => false, 'message' => 'Missing demande_id']);
+                return;
+            }
+
+            if ($status === 'Rejected') {
+                $this->demandeModel->changeStatus($demande_id, 'Rejected');
+                echo json_encode(['success' => true, 'message' => 'Demande Rejected']);
+                return;
+            }
+
+            if (!$link) {
+                echo json_encode(['success' => false, 'message' => 'Missing Link for Acceptance']);
+                return;
+            }
+
+            $demande = $this->demandeModel->findById($demande_id);
+            if (!$demande) {
+                echo json_encode(['success' => false, 'message' => 'Demande not found']);
+                return;
+            }
+
+            $rendezvousModel = new Rendezvous($this->db);
+
+            $created = $rendezvousModel->create($demande_id, $link, $demande['date_debut'], $demande['date_fin'], $duration);
+
+            if ($created) {
+                $this->demandeModel->changeStatus($demande_id, 'Accepted');
+                echo json_encode(['success' => true, 'message' => 'Rendezvous created and Demande accepted']);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to create Rendezvous']);
+            }
+        }
+    }
 }
 
 $controller = new DemandeController();
 if (isset($_GET['action'])) {
     if ($_GET['action'] === 'store') {
         $controller->store();
+    } elseif ($_GET['action'] === 'accept') {
+        $controller->accept();
     }
 } else {
     $controller->index();
