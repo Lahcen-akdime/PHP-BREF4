@@ -3,12 +3,20 @@ namespace Controller;
 Use Services\Database;
 use render\View;
 use Services\AuthValidation;
-use models\Repository\RepositorySignUp;
+use models\Repository\UserRepository;
 class AuthController{
 
     public static function login()
     {
         View::render('authentification/Login');
+        if(isset($_POST['submitLogin'])){
+        $validation = new AuthValidation;
+        $resu = $validation->ValidationLogin();
+        if($resu){
+        header("location:../home");
+        }
+        }
+
     }
 
     public static function signUp()
@@ -19,9 +27,11 @@ class AuthController{
             $resu = $validation->ValidationsignUp();
             if(isset($resu)){
             $con = Database::get_connection();
-            $sendData = new RepositorySignUp($con);
-            $sendData->creat($resu);
-            $_SESSION['success'] = "Creation succes";
+            $sendData = new UserRepository($con);
+            $rs = $sendData->creat($resu);
+            if($rs){
+            header("location:Login");
+            }
             }
         }
 
@@ -29,7 +39,10 @@ class AuthController{
 
     public static function logOut()
     {
-        View::render('authentification/LogOut');
+        session_start();
+        session_unset();
+        session_destroy();
+        header("location:Login");
     }
     public static function form()
     {

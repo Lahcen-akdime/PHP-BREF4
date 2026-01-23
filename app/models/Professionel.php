@@ -184,4 +184,5 @@ public function getAll($tableName){
         $stmt = $connection->prepare("UPDATE {$tableName} SET status = :status WHERE id=:id");
         $stmt->execute([':id'=>$id,':status'=>'Rejected']);
     }
+
 }

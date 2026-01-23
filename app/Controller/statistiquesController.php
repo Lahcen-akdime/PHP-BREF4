@@ -23,14 +23,14 @@ class StatistiquesController
   public static function checkUser()
   {
 
-    if($_SESSION["avocat"]==="avocat"){
+    if($_SESSION["role"]==="avocat"){
       header("location:Avocat");
 
       }
-    else if($_SESSION["huissier"]==="huissier"){
+    else if($_SESSION["role"]==="huissier"){
         header("location:Huissier");
 
-    }else if ($_SESSION["admin"] === "admin") {
+    }else if ($_SESSION["role"] === "admin") {
       header("location:Admin");
     }
   }
