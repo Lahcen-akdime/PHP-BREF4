@@ -6,12 +6,13 @@ use Middleware\AvocatMidlleWare;
 use Middleware\AdminMidlleWare;
 use router\Roles;
 use Controller;
+
 use render\View;
 
 class Routing{
     private static array $controllers = ["avocats"=>"avocatsController",
                                         "huissier"=>"huissierController",
-                                        "home"=>"homeController",
+                                        "home"=>"HomeController",
                                         "dashboard"=>"dashboardController",
                                         "statistiques"=>"statistiquesController",
                                         "create"=>"CreateController",
@@ -24,8 +25,6 @@ class Routing{
                                         "auth"=>"AuthController",
                                         "form"=>"AuthController",
                                         "client" => "ClientController",
-                                        "demande" => "DemandeController",
-                                        "statistiques" => "StatistiquesController",
                                         "demandes" => "DemandeController"
                                         ];
     public static function dispatch(){
@@ -65,15 +64,16 @@ class Routing{
         if(array_key_exists($controllerKey,self::$controllers)){
             // new $controllerName();
         require_once __DIR__."/../Controller/".self::$controllers[$controllerKey].".php";
+        
             }
             else{
                 echo "404 C";
             }
                 
-        if(!$methode) {
-            header("location:home");
-            return;
-            }
+        if (!$methode) {
+        $controllerName::index();
+        return;
+        }
         
         if(!method_exists($controllerName, $methode)){
             echo "404 M";

@@ -6,22 +6,32 @@ use Services\AuthValidation;
 use models\Repository\UserRepository;
 class AuthController{
 
+    public static function index() {
+    header("Location:/PHP-BREF4/auth/login");
+    exit;
+    }
+
     public static function login()
     {
-        View::render('authentification/Login');
+    if (isset($_SESSION['role'])) {
+        header("Location:/PHP-BREF4/home");
+        exit;
+    }
         if(isset($_POST['submitLogin'])){
         $validation = new AuthValidation;
         $resu = $validation->ValidationLogin();
         if($resu){
-        header("location:../home");
+        header("Location:/PHP-BREF4/home");
+        exit;
         }
         }
+        
+        View::render('authentification/Login');
 
     }
 
     public static function signUp()
     {
-    View::render('authentification/signup');
         if(isset($_POST['submitSignup'])){
             $validation = new AuthValidation;
             $resu = $validation->ValidationsignUp();
@@ -30,16 +40,16 @@ class AuthController{
             $sendData = new UserRepository($con);
             $rs = $sendData->creat($resu);
             if($rs){
-            header("location:Login");
+        header("Location:/PHP-BREF4/auth/login");
             }
+            }    
             }
-        }
+            View::render('authentification/signup');
 
     }
 
     public static function logOut()
     {
-        session_start();
         session_unset();
         session_destroy();
         header("location:Login");
@@ -51,8 +61,9 @@ class AuthController{
     public static function formDire()
     {
         if(isset($_POST['role']) && $_POST['role'] == 'client'){
-            header('location:/PHP-BREF4/Auth/signup');
             $_SESSION['role'] = $_POST['role'];
+            header('location:/PHP-BREF4/Auth/signup');
+            exit;
         }else{
             header('location:/PHP-BREF4/Auth/Pro');
         }
