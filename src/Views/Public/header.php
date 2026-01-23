@@ -1,14 +1,13 @@
 <?php
-echo "<header><div class='logo'>LegalHub</div><nav>";           
+echo "<header><div class='logo'>LegalHub</div><nav>
+      <a href='dashboard' class='nav-button nav-link'>Home</a>";           
     if($_SESSION['role'] == "client"){
-echo "  <a href='dashboard' class='nav-button nav-link'>Home</a>
-        <a href='avocats' class='nav-button logout'>Avocats</a>
+echo "<a href='avocats' class='nav-button logout'>Avocats</a>
         <a href='huissier' class='nav-button login'>Huissiers</a>
         <a href='Statistiques/checkUser' class='nav-button nav-link'>Statistics</a>
         <a href='client' class='nav-button nav-link'>Recherche</a>";
 }elseif ($_SESSION['role'] == "admin") {
-   echo "<a href='dashboard' class='nav-button nav-link'>Home</a>
-        <a href='avocats' class='nav-button logout'>Avocats</a>
+   echo "<a href='avocats' class='nav-button logout'>Avocats</a>
         <a href='huissier' class='nav-button login'>Huissiers</a>
         <a href='Statistiques/checkUser' class='nav-button nav-link'>Statistics</a>
         <a href='client' class='nav-button nav-link'>Recherche</a>";
