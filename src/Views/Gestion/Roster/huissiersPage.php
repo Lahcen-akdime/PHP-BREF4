@@ -8,7 +8,7 @@
        <script src="src/Views/Public/script.js"></script>
 </head>
 <body>
-    <?php require_once "../src/Views/public/header.html" ?>
+    <?php require_once "../src/Views/public/header.php" ?>
     <div class="container">
         <h1 class="h1">Cabinet d'Huissiers</h1>
         <div class="controls-wrapper">

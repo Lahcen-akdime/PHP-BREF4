@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-             <?php require_once "../src/Views/public/header.html" ?>
+             <?php require_once "../src/Views/public/header.php" ?>
             <h1 style="text-align: center;">Statistiques Professionnels Juridiques</h1>
 
         <div class="stats-container">

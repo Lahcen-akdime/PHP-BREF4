@@ -98,7 +98,7 @@
 </head>
 
 <body>
-    <?php require_once __DIR__ . "/../../Public/header.html" ?>
+    <?php require_once __DIR__ . "/../../Public/header.php" ?>
 
     <div class="container">
         <div class="page-header">

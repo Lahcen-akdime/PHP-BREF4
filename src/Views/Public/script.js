@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   var calendarEl = document.getElementById('calendar');
   // ============================================= FETCH FROM DATABASE ================================================= //
   async function getData() {
-    let response = await fetch("http://localhost/ISTICHARA/json&get");
+    let response = await fetch("http://localhost/PHP-BREF4/json&get");
     let data = await response.json();
     return data ;
   }

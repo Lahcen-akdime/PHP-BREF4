@@ -9,7 +9,7 @@
        <script src="src/Views/Public/script.js" defer></script>
 </head>
 <body>
-    <?php require_once "../src/Views/public/header.html" ?>
+    <?php require_once "../src/Views/public/header.php" ?>
     <h1>Cabinet d'Avocats</h1>
     <div class="container">
         <div class="controls-wrapper">

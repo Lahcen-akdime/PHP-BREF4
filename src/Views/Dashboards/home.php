@@ -19,7 +19,7 @@
 
     </script> -->
 </head>
-    <?php require_once "../src/Views/public/header.html" ?>
+    <?php require_once "../src/Views/public/header.php" ?>
 <body>
     <main class="hero">
         <h1 class="hero-title">Legal Services Platform</h1>
