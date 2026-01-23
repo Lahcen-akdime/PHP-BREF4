@@ -71,7 +71,7 @@ class Routing{
             }
                 
         if(!$methode) {
-            View::render('Dashboards/home');
+            header("location:home");
             return;
             }
         

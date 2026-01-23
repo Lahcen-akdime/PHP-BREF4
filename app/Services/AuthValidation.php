@@ -90,6 +90,7 @@ class AuthValidation{
             }
     $_SESSION['role'] = $getDb['role'];
     $_SESSION['name'] = $getDb['name'];
+    $_SESSION['user_id'] = $getDb['id'];
 
     return true;
     }
