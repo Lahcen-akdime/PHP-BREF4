@@ -22,25 +22,28 @@
       Inscrivez-vous pour réserver vos consultations
     </p>
 
-    <form>
+    <form method = "POST" action = "SignUp">
 
       <div class="client-signup-group">
-        <input type="text" placeholder="Nom complet" required>
+        <input type="text" placeholder="Nom complet" name = "name" required>
       </div>
 
       <div class="client-signup-group">
-        <input type="email" placeholder="Email" required>
+        <input type="email" placeholder="Email" name = "email" required>
       </div>
 
       <div class="client-signup-group">
-        <input type="password" placeholder="Mot de passe" required>
+        <input type="password" placeholder="Mot de passe" name = "password1" required>
       </div>
 
       <div class="client-signup-group">
-        <input type="password" placeholder="Confirmer le mot de passe" required>
+        <input type="password" placeholder="Confirmer le mot de passe" name = "password2" required>
       </div>
+          <?php if (!empty($_SESSION['error'])): ?>
+          <p style="color:red"><?= $_SESSION['error']; unset($_SESSION['error']); ?></p>
+          <?php endif; ?>
 
-      <button class="client-signup-btn">
+      <button name = "submitSignup" class="client-signup-btn">
         Créer le compte
       </button>
 

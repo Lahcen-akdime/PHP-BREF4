@@ -23,4 +23,4 @@ let Client_Secret = "mX2Nt6pnLMP4GeDlznWZh8e46ppetVA3" ;
    console.log(
       `Zoom Rivet Events Server running on: ${JSON.stringify(server.address())}`
    );
-})();
+})(); 
