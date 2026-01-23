@@ -56,13 +56,35 @@ class Client extends User
         if (!$user) return null;
         $table = ($user['role'] === 'avocat') ? 'avocats' : 'huissiers';
 
-        $sql = "SELECT id, name, email, role, disponibilite 
-                FROM $table 
-                WHERE id = :id";
+        $sql = "SELECT t.id, u.name, u.email, u.role, t.disponibilite 
+                FROM $table t
+                INNER JOIN users u ON t.id = u.id 
+                WHERE t.id = :id";
 
         $stmt = self::$connection->prepare($sql);
         $stmt->execute([':id' => $id]);
 
         return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+    public function getHistory($clientId)
+    {
+        $query = "
+            SELECT 
+                d.id, 
+                d.status, 
+                d.date_debut, 
+                d.date_fin,
+                u.name as professionel_name,
+                r.link as meeting_link
+            FROM demandes d
+            INNER JOIN users u ON d.professionel_id = u.id
+            LEFT JOIN rendez_vous r ON d.id = r.demande_id
+            WHERE d.client_id = :id
+            ORDER BY d.date_debut DESC
+        ";
+
+        $stmt = self::$connection->prepare($query);
+        $stmt->execute([':id' => $clientId]);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

@@ -17,12 +17,13 @@ class Demande
     {
         $this->db = $db;
     }
-    public function find(int $id){
-        try{
+    public function find(int $id)
+    {
+        try {
             $stmt = $this->db->prepare("SELECT * from demandes where client_id = :id");
-            $stmt->execute([':id'=>$id]);
+            $stmt->execute([':id' => $id]);
             return $stmt->fetchAll();
-        }catch(PDOException){
+        } catch (PDOException) {
             return false;
         }
     }
@@ -82,6 +83,17 @@ class Demande
             return true;
         } catch (\PDOException $e) {
             return false;
+        }
+    }
+
+    public function getAcceptedByProfessional($proId)
+    {
+        try {
+            $stmt = $this->db->prepare("SELECT date_debut, date_fin FROM demandes WHERE professionel_id = :proId AND status = 'Accepted'");
+            $stmt->execute([':proId' => $proId]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            return [];
         }
     }
 }

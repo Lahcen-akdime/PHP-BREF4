@@ -93,7 +93,7 @@ function renderResults(data, role) {
 performSearch();
 
 async function openBookingModal(id) {
-    const url = `index.php?page=client&action=getAvailability&id=${id}`;
+    const url = `index.php?page=client/getAvailability&action=getAvailability&id=${id}`;
     
     try {
         const response = await fetch(url);
@@ -112,15 +112,24 @@ let calendarState = {
     selectedStartTime: null,
     selectedEndTime: null,
     schedule: {},
+    booked: [], 
     proId: null
 };
 
 function showModal(data, proId) {
-    let schedule = data;
-    if (typeof data === 'string') {
-        try { schedule = JSON.parse(data); } catch (e) { schedule = {}; }
+    let scheduleRaw = data.schedule;
+    let booked = data.booked || [];
+
+    let schedule = scheduleRaw;
+    if (typeof scheduleRaw === 'string') {
+        try { schedule = JSON.parse(scheduleRaw); } catch (e) { schedule = {}; }
+    } else if (typeof scheduleRaw === 'object' && scheduleRaw !== null) {
+         schedule = scheduleRaw;
     }
+
     calendarState.schedule = {};
+    calendarState.booked = booked;
+
     for (let key in schedule) {
         calendarState.schedule[key.toLowerCase()] = schedule[key];
     }
@@ -222,7 +231,10 @@ function renderMonthGrid(dateObj, containerId) {
     for (let d = 1; d <= daysInMonth; d++) {
         const currentCheck = new Date(year, month, d);
         const dayName = daysEn[currentCheck.getDay()];
-        const dateStr = currentCheck.toISOString().split('T')[0];
+        const yearStr = currentCheck.getFullYear();
+        const monthStr = String(currentCheck.getMonth() + 1).padStart(2, '0');
+        const dayStr = String(currentCheck.getDate()).padStart(2, '0');
+        const dateStr = `${yearStr}-${monthStr}-${dayStr}`;
         
         const cell = document.createElement('div');
         cell.className = 'cal-cell day-cell';
@@ -264,8 +276,11 @@ function onDateSelect(dateStr, slots, cellElement) {
     const display = document.getElementById('selected-date-display');
     const grid = document.getElementById('time-slots-grid');
     
-    area.style.display = 'block';
-    display.innerText = new Date(dateStr).toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    area.style.display = 'block';    
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const displayDate = new Date(y, m - 1, d);
+    display.innerText = displayDate.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    
     grid.innerHTML = '';
 
     slots.forEach(range => {
@@ -275,10 +290,41 @@ function onDateSelect(dateStr, slots, cellElement) {
         while(start < end) {
             const timeVal = start.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
             
+            const currentSlotStart = new Date(`${dateStr}T${timeVal}:00`);
+            const currentSlotEnd = new Date(currentSlotStart.getTime() + 30*60000); 
+            
+            let isBooked = false;
+            
+            if (calendarState.booked && calendarState.booked.length > 0) {
+                for (let b of calendarState.booked) {
+                    let bStartStr = b.date_debut.replace(' ', 'T');
+                    let bEndStr = b.date_fin.replace(' ', 'T');
+                    
+                    let bStart = new Date(bStartStr);
+                    let bEnd = new Date(bEndStr);
+                    
+                    if (currentSlotStart < bEnd && currentSlotEnd > bStart) {
+                        isBooked = true;
+                        break;
+                    }
+                }
+            }
+
             const btn = document.createElement('button');
             btn.className = 'time-slot-pill';
             btn.innerText = timeVal;
-            btn.onclick = () => onTimeSelect(timeVal, btn);
+            
+            if (isBooked) {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+                btn.title = "Déjà réservé";
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+                btn.style.backgroundColor = "#e74c3c"; 
+            } else {
+                btn.onclick = () => onTimeSelect(timeVal, btn);
+            }
+            
             grid.appendChild(btn);
             
             start.setMinutes(start.getMinutes() + 30);
@@ -331,7 +377,7 @@ async function submitBooking() {
     btn.disabled = true;
 
     try {
-        const response = await fetch('index.php?page=demandes&action=store', {
+        const response = await fetch('index.php?page=demandes/store&action=store', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

@@ -63,14 +63,37 @@ class ClientController
     }
     public function getAvailability()
     {
-
         header("Content-Type: application/json");
-        $id = $_GET['id'] ?? null;
-        if ($id) {
-            $data = $this->clientModel->getProfessionalById($id);
-            if ($data) {
-                echo json_encode($data['disponibilite']);
+        try {
+            $id = $_GET['id'] ?? null;
+            if ($id) {
+                $data = $this->clientModel->getProfessionalById($id);
+                $booked = $this->demandeModel->getAcceptedByProfessional($id);
+
+                if ($data) {
+                    echo json_encode([
+                        'schedule' => $data['disponibilite'],
+                        'booked' => $booked
+                    ]);
+                } else {
+                    echo json_encode(['error' => 'Professional not found']);
+                }
+            } else {
+                echo json_encode(['error' => 'No ID provided']);
             }
+        } catch (\Throwable $e) {
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
         }
+    }
+
+    public function history()
+    {
+        $clientId = 9;
+        $history = $this->clientModel->getHistory($clientId);
+
+        View::render('Client/history/index', [
+            'history' => $history
+        ]);
     }
 }
