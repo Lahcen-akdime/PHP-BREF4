@@ -278,16 +278,16 @@
 
         <div class="stats">
             <div class="stat-card">
-                <div class="stat-number">12</div>
-                <div class="stat-label">En attente</div>
+                <div class="stat-number"><?= $pending ?></div>
+                <div class="stat-label">Pending</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">45</div>
-                <div class="stat-label">Approuvés</div>
+                <div class="stat-number"><?= $accepted ?></div>
+                <div class="stat-label">Accepted</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">8</div>
-                <div class="stat-label">Rejetés</div>
+                <div class="stat-number"><?= $rejected ?></div>
+                <div class="stat-label">Rejected</div>
             </div>
         </div>
 
@@ -314,29 +314,35 @@
             <table>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nom</th>
                         <th>Email</th>
-                        <th>Type</th>
-                        <th>Date inscription</th>
+                        <th>Role</th>
+                        <!-- <th>Date inscription</th> -->
                         <th>Statut</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach($LesDemandes as $demande){ ?>
                     <tr>
-                        <td>Ahmed Bennani</td>
-                        <td>ahmed.bennani@law.com</td>
-                        <td>Avocat</td>
-                        <td>2024-01-15</td>
-                        <td><span class="status-badge status-pending">En attente</span></td>
+                        <td><?= $demande['id'] ?></td>
+                        <td><?= $demande['name'] ?></td>
+                        <td><?= $demande['email'] ?></td>
+                        <td><?= $demande['role'] ?></td>
+                        <td><span class="status-badge status-pending"><?= $demande['status'] ?></span></td>
                         <td>
                             <div class="actions">
-                                <button class="btn btn-approve">Approuver</button>
-                                <button class="btn btn-reject">Refuser</button>
+                                <a href="Update&id=<?= $demande['id'] ?>&role=<?= $demande['role'] ?>">
+                                    <button class="btn btn-approve">Approuver</button>
+                                </a>
+                                <a href="Rejected&id=<?=$demande['id']?>&role=<?= $demande['role'] ?>">
+                                    <button class="btn btn-reject">Refuser</button>
+                                </a>
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Fatima Alami</td>
                         <td>fatima.alami@law.com</td>
                         <td>Avocat</td>
@@ -384,8 +390,8 @@
                                 <button class="btn btn-approve">Rétablir</button>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>Laila Hassan</td>
                         <td>laila.h@bailiff.com</td>
                         <td>Huissier</td>
@@ -396,7 +402,8 @@
                                 <button class="btn btn-reject">Suspendre</button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

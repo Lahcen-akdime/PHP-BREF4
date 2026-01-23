@@ -2,7 +2,7 @@
 namespace models;
 
 class User{
-    protected ?int $id =11;
+    protected ?int $id;
     protected ?string $name ;
     protected ?string $email;
     protected ?string $password;

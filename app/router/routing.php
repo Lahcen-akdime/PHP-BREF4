@@ -18,7 +18,8 @@ class Routing{
                                         "auth"=>"AuthController",
                                         "form"=>"AuthController",
                                         "client" => "ClientController",
-                                        "demande" => "DemandeController"
+                                        "demande" => "DemandeController",
+                                        "statistiques" => "StatistiquesController",
                                         ];
     public static function dispatch(){
         $page = $_GET['page'] ?? "home" ;
