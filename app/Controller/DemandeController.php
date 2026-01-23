@@ -101,14 +101,4 @@ class DemandeController
     }
 }
 
-$controller = new DemandeController();
-if (isset($_GET['action'])) {
-    if ($_GET['action'] === 'store') {
-        $controller->store();
-    } elseif ($_GET['action'] === 'accept') {
-        $controller->accept();
-    }
-} else {
-    $controller->index();
-}
 
