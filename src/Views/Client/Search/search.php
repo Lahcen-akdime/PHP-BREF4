@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recherche de Professionnels - LegalHub</title>
-    <link rel="stylesheet" href="src/Views/Public/style.css">
-    <link rel="stylesheet" href="src/Views/Client/Search/style.css">
-    <script src="src/Views/Client/Search/script.js" defer></script>
+    <link rel="stylesheet" href="../src/Views/Public/style.css">
+    <link rel="stylesheet" href="../src/Views/Client/Search/style.css">
+    <script src="../src/Views/Client/Search/script.js" defer></script>
 </head>
 
 <body>

@@ -36,7 +36,7 @@ CREATE TABLE avocats (
  consultation_en_ligne bool DEFAULT true ,
  Annes_dex int not null ,
  ville_id int ,
- status bool default false,
+ status status_enum,
 taarif decimal(10,2),
 document varchar(255) array[3],
  FOREIGN KEY (ville_id) REFERENCES villes(id)
@@ -50,7 +50,7 @@ CREATE TABLE huissiers (
  types_actes types_enum not null ,
  consultation_en_ligne bool DEFAULT true ,
  Annes_dex int not null ,
-  status bool default false,
+  status status_enum,
 taarif decimal(10,2),
 document varchar(255) array[3],
  ville_id int ,
