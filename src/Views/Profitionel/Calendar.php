@@ -2,7 +2,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => "https://api.zoom.us/v2/users/{userId}/meetings",
+  CURLOPT_URL => "https://api.zoom.us/v2/users/FTnWmfB_R1mUF0ks9tDavQ/meetings",
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => "",
   CURLOPT_MAXREDIRS => 10,
@@ -12,7 +12,7 @@ curl_setopt_array($curl, array(
   CURLOPT_CUSTOMREQUEST => "POST",
   CURLOPT_POSTFIELDS =>"{\r\n  \"agenda\": \"My Meeting\",\r\n  \"default_password\": false,\r\n  \"duration\": 60,\r\n  \"password\": \"123456\"\r\n}",
   CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer  {YOUR TOKEN HERE}",
+    "Authorization: Bearer  Dxbe9fx7SaCGe9uEUJfdaw",
     "Content-Type: application/json"
   ),
 ));
