@@ -61,7 +61,8 @@ class Routing{
 
         $controllerName = "Controller\\" . self::$controllers[$controllerKey];
         if(array_key_exists($controllerKey,self::$controllers)){
-            new $controllerName();
+            // new $controllerName();
+        require_once __DIR__."/../Controller/".self::$controllers[$controllerKey].".php";
             }
             else{
                 echo "404 C";
