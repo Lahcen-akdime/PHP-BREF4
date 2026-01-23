@@ -39,9 +39,10 @@ class AuthController{
 
     public static function logOut()
     {
+        session_start();
         session_unset();
         session_destroy();
-        View::render('authentification/Login');
+        header("location:Login");
     }
     public static function form()
     {
