@@ -24,7 +24,7 @@ class DemandeController
         $meetingLink = $zoomClass -> getTheMeetingLink() ;
         // $getPassword = $zoomClass -> getMeetingPassword();
         $data = $this->demandeModel->findallPending();
-        View::render("Professionel/demandes/index", ["demandes" => $data]);
+        View::render("Professionel/demandes/index", ["demandes" => $data , "meetingLink" => $meetingLink]);
     }
 
     public function store()
@@ -54,8 +54,7 @@ class DemandeController
         }
     }
     public static function goToCalendar(){
-
-    include_once "..\src\Views\Profitionel\Calendar.php";
+         View::render('Professionel\Calendar',[]);
     }
 
     public function accept()
