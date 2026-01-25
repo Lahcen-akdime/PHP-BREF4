@@ -98,7 +98,7 @@
 </head>
 
 <body>
-    <?php require_once __DIR__ . "/../../Public/header.html" ?>
+    <?php require_once __DIR__ . "/../../Public/header.php" ?>
 
     <div class="container">
         <div class="page-header">
@@ -109,7 +109,7 @@
         <?php if (empty($history)): ?>
             <div class="empty-history">
                 <p>Aucune consultation trouvée.</p>
-                <a href="client/search" class="btn-link">Trouver un professionnel</a>
+                <a href="/PHP-BREF4/client" class="btn-link">Trouver un professionnel</a>
             </div>
         <?php else: ?>
             <table class="history-table">

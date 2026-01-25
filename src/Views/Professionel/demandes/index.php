@@ -16,7 +16,7 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800">
-    <?php require_once "../src/Views/public/header.html"; ?>
+    <?php require_once "../src/Views/public/header.php"; ?>
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold mb-8 text-gray-900" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #06d6ff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Demandes en attente</h1>
 

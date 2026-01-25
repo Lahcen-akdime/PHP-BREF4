@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +20,8 @@
 
     </script> -->
 </head>
-    <?php require_once "../src/Views/public/header.html" ?>
+<?php require_once "../src/Views/public/header.php" ?>
+
 <body>
     <main class="hero">
         <h1 class="hero-title">Legal Services Platform</h1>
@@ -37,12 +39,12 @@
                 <!-- test -->
             </a>
 
-            
+
             <a href="Statistiques" class="button-card">
                 <div class="button-icon">📊</div>
                 <div class="button-label">Statistics</div>
             </a>
-            
+
             <a href="Create" class="button-card amber">
                 <div class="button-icon">📋</div>
                 <div class="button-label">Ajouter Un Employee</div>
@@ -53,11 +55,12 @@
                 <div class="button-label">Calendar</div>
             </a> -->
         </div>
-         <!-- <div id='calendar'></div> -->
+        <!-- <div id='calendar'></div> -->
     </main>
 
     <footer>
         <p>&copy; 2026 LegalHub Platform. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

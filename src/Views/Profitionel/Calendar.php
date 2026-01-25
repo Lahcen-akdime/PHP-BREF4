@@ -12,7 +12,7 @@
     <script src="../src/Views/Public/script.js" defer></script>
 </head>
 <body>
-    <?php require_once "../src/Views/public/header.html" ?>
+    <?php require_once "../src/Views/public/header.php" ?>
     <a href="#Create"><button class="btn btn-edit">Add new event/task + </button></a>
     <div id='calendar'></div>
     <div id="Create">
