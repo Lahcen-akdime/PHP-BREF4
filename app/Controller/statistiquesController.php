@@ -2,14 +2,6 @@
 
 namespace Controller;
 
-// use models\Ville ;
-// use models\Avocat ;
-// $villeClass = new ville($connection);
-// $avocatsSum = sizeof($avocatClass -> getAll("avocats"));
-// $huissierSum = sizeof($huissierClass -> getAll("huissiers"));
-// $top3 = $avocatClass -> top3();
-// $allvilles = $villeClass -> getAll() ;
-// include_once "./src/Views/Avocat-dashbord/dashbord-avocat.php";
 use models\Avocat;
 use models\Huissier;
 use models\Professionel;
