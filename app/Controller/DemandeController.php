@@ -6,7 +6,7 @@ use models\Demande;
 use models\Rendezvous;
 use render\View;
 use Services\Database;
-
+use models\zoom ;
 class DemandeController
 {
     private $demandeModel;
@@ -20,6 +20,9 @@ class DemandeController
 
     public function index()
     {
+        $zoomClass = new Zoom();
+        $meetingLink = $zoomClass -> getTheMeetingLink() ;
+        // $getPassword = $zoomClass -> getMeetingPassword();
         $data = $this->demandeModel->findallPending();
         View::render("Professionel/demandes/index", ["demandes" => $data]);
     }
@@ -51,6 +54,7 @@ class DemandeController
         }
     }
     public static function goToCalendar(){
+
     include_once "..\src\Views\Profitionel\Calendar.php";
     }
 
@@ -62,7 +66,7 @@ class DemandeController
             $input = json_decode(file_get_contents('php://input'), true);
             $demande_id = $input['demande_id'] ?? null;
             $status = $input['status'];
-            $link = $input['link'] ?? null;
+            $link = $input['link'] ?? null; // here
             $duration = $input['duration'] ?? 0;
 
             if (!$demande_id) {

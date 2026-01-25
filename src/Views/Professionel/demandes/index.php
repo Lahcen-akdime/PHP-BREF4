@@ -128,8 +128,8 @@
             <div class="mt-3 text-center">
                 <h3 class="text-xl leading-6 font-bold text-cyan-400 mb-4">Accepter la demande</h3>
                 <div class="mt-2 text-left">
-                    <label class="block text-sm font-medium text-gray-300 mb-2">Lien Zoom</label>
-                    <input type="text" id="zoomLink" class="w-full px-4 py-2 border border-gray-600 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400" placeholder="https://zoom.us/j/...">
+                    <label class="block text-sm font-medium text-gray-300 mb-2">Link Zoom Generated Automaticly ! </label>
+                    <input type="text" id="zoomLink" class="w-full px-4 py-2 border border-gray-600 bg-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 text-white placeholder-gray-400" placeholder="https://zoom.us/j/..." value="<?= $meetingLink ?>" disabled>
                 </div>
                 <div class="items-center px-4 py-3 mt-6 flex gap-4">
                     <button id="closeModal" class="w-full px-4 py-2 bg-slate-700 text-gray-300 font-medium rounded-lg hover:bg-slate-600 transition-colors">
