@@ -109,7 +109,7 @@
         <?php if (empty($history)): ?>
             <div class="empty-history">
                 <p>Aucune consultation trouvée.</p>
-                <a href="client/search" class="btn-link">Trouver un professionnel</a>
+                <a href="/PHP-BREF4/client" class="btn-link">Trouver un professionnel</a>
             </div>
         <?php else: ?>
             <table class="history-table">

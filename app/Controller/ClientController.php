@@ -32,11 +32,6 @@ class ClientController
         ]);
     }
 
-    public function demandes()
-    {
-        $data = $this->demandeModel->find(1);
-    }
-
     public function search()
     {
         if (isset($_GET['action']) && $_GET['action'] === 'search') {

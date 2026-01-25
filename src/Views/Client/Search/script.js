@@ -26,7 +26,7 @@ async function performSearch() {
     if (type) extraParam = `&specialite=${type}`;
   }
 
-  const url = `index.php?page=client/search&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
+  const url = `/PHP-BREF4/index.php?page=client/search&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
 
   try {
     const response = await fetch(url);
@@ -38,13 +38,29 @@ async function performSearch() {
   }
 }
 
+
+function resetFilters() {
+  document.getElementById("keyword").value = "";
+  document.getElementById("role").value = "avocat";
+  document.getElementById("ville").value = "";
+  document.getElementById("specialite").value = "";
+  document.getElementById("type_acte").value = "";
+  toggleFilters();
+  performSearch();
+}
+
 function renderResults(data, role) {
   const container = document.getElementById("results");
+  const countDisplay = document.getElementById("results-count");
+  
   container.innerHTML = "";
+  if(countDisplay) {
+    countDisplay.innerText = `${data.length} résultat${data.length > 1 ? 's' : ''}`;
+  }
 
   if (data.length === 0) {
     container.innerHTML =
-      '<div class="no-results">Aucun professionnel trouvé.</div>';
+      '<div class="no-results"><h3>Aucun professionnel trouvé</h3><p>Essayez de modiifer vos filtres.</p></div>';
     return;
   }
 
@@ -93,7 +109,7 @@ function renderResults(data, role) {
 performSearch();
 
 async function openBookingModal(id) {
-    const url = `index.php?page=client/getAvailability&action=getAvailability&id=${id}`;
+    const url = `/PHP-BREF4/index.php?page=client/getAvailability&action=getAvailability&id=${id}`;
     
     try {
         const response = await fetch(url);
