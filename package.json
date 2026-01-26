@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@zoom/rivet": "^0.4.0",
     "fullcalendar": "^6.1.20"
   }
 }

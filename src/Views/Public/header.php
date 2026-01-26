@@ -31,7 +31,7 @@
             <a href="/PHP-BREF4/avocats" class="nav-button logout">Avocats</a>
             <a href="/PHP-BREF4/huissier" class="nav-button login">Huissiers</a>
             <a href="/PHP-BREF4/Statistiques/checkUser" class="nav-button nav-link">Statistics</a>
-            <a href='demandes/goToCalendar' class='nav-button nav-link'>Full Calender</a>
+            <a href='/PHP-BREF4/demandes/goToCalendar' class='nav-button nav-link'>Full Calender</a>
             <a href="/PHP-BREF4/demandes" class="nav-button nav-link">Demandes</a>
             <a href="/PHP-BREF4/auth/logout" class="nav-button logout">Logout</a>
 <?php }?>

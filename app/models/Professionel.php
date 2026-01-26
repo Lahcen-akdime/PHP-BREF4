@@ -1,7 +1,7 @@
 <?php
-
-namespace models;
-
+namespace models ;
+use models\User ;
+use LDAP\Result;
 use PDO;
 
 class Professionel extends User

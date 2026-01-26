@@ -33,4 +33,10 @@ class Rendezvous
             return false;
         }
     }
+    public function RendezvousById($id){
+    return $this -> db -> query("SELECT u.name,r.link as url ,r.date_debut as start  from demandes d
+    inner join rendez_vous r on d.id=r.demande_id AND d.professionel_id = $id
+    inner join users u on d.client_id = u.id 
+    where  d.status = 'Accepted'") -> fetchAll() ;
+    }
 }
