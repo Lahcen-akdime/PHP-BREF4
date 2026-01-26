@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-       <link rel="stylesheet" href="/PHP-BREF4/src/Views/Public/style.css">
+       <link rel="stylesheet" href="/PHP-BREF4/src/Views/authentification/style.css">
 </head>
+
+    <!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">LegalHub</div>
+    <div>
+        <a href="Login" class="nav-button logout">Login</a>
+    </div>
+</div>
+
 <div class="auth-choice-wrapper">
 
   <div class="auth-choice-card">
@@ -16,7 +25,7 @@
     <form method="POST" action="/PHP-BREF4/Auth/FormDire">
 
       <label class="auth-choice-option">
-        <input type="radio" name="role" value="CLIENT" required>
+        <input type="radio" name="role" value="client" required>
         <div class="auth-choice-box">
           <span class="auth-choice-icon">👤</span>
           <div class="auth-choice-text">
@@ -27,7 +36,7 @@
       </label>
 
       <label class="auth-choice-option">
-        <input type="radio" name="role" value="PRO">
+        <input type="radio" name="role" value="pro">
         <div class="auth-choice-box">
           <span class="auth-choice-icon">🧑‍⚖️</span>
           <div class="auth-choice-text">

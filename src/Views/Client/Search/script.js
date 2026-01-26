@@ -26,24 +26,41 @@ async function performSearch() {
     if (type) extraParam = `&specialite=${type}`;
   }
 
-  const url = `index.php?page=client&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
+  const url = `/PHP-BREF4/index.php?page=client/search&action=search&role=${role}&search=${encodeURIComponent(keyword)}&ville=${ville}${extraParam}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     renderResults(data, role);
   } catch (error) {
     console.error("Error:", error);
   }
 }
 
+
+function resetFilters() {
+  document.getElementById("keyword").value = "";
+  document.getElementById("role").value = "avocat";
+  document.getElementById("ville").value = "";
+  document.getElementById("specialite").value = "";
+  document.getElementById("type_acte").value = "";
+  toggleFilters();
+  performSearch();
+}
+
 function renderResults(data, role) {
   const container = document.getElementById("results");
+  const countDisplay = document.getElementById("results-count");
+  
   container.innerHTML = "";
+  if(countDisplay) {
+    countDisplay.innerText = `${data.length} résultat${data.length > 1 ? 's' : ''}`;
+  }
 
   if (data.length === 0) {
     container.innerHTML =
-      '<div class="no-results">Aucun professionnel trouvé.</div>';
+      '<div class="no-results"><h3>Aucun professionnel trouvé</h3><p>Essayez de modiifer vos filtres.</p></div>';
     return;
   }
 
@@ -73,6 +90,10 @@ function renderResults(data, role) {
                     <span class="detail-label">Localisation</span>
                     <span class="detail-value">${item.ville_name || "Ville Inconnue"}</span> 
                 </div>
+                <div class="detail-row">
+                    <span class="detail-label">Honoraires</span>
+                    <span class="detail-value">${item.taarif ? item.taarif + " DH" : "Non spécifié"}</span> 
+                </div>
                 <span class="consultation-badge ${isOnline ? "consultation-yes" : "consultation-no"}">
                     ${isOnline ? "✓ Consultation En Ligne" : "✖️ Pas de consultation"}
                 </span>
@@ -88,7 +109,7 @@ function renderResults(data, role) {
 performSearch();
 
 async function openBookingModal(id) {
-    const url = `index.php?page=client&action=getAvailability&id=${id}`;
+    const url = `/PHP-BREF4/index.php?page=client/getAvailability&action=getAvailability&id=${id}`;
     
     try {
         const response = await fetch(url);
@@ -104,25 +125,36 @@ async function openBookingModal(id) {
 let calendarState = {
     currentDate: new Date(),
     selectedDate: null,
-    selectedTime: null,
+    selectedStartTime: null,
+    selectedEndTime: null,
     schedule: {},
+    booked: [], 
     proId: null
 };
 
 function showModal(data, proId) {
-    let schedule = data;
-    if (typeof data === 'string') {
-        try { schedule = JSON.parse(data); } catch (e) { schedule = {}; }
+    let scheduleRaw = data.schedule;
+    let booked = data.booked || [];
+
+    let schedule = scheduleRaw;
+    if (typeof scheduleRaw === 'string') {
+        try { schedule = JSON.parse(scheduleRaw); } catch (e) { schedule = {}; }
+    } else if (typeof scheduleRaw === 'object' && scheduleRaw !== null) {
+         schedule = scheduleRaw;
     }
-    
+
     calendarState.schedule = {};
+    calendarState.booked = booked;
+
     for (let key in schedule) {
         calendarState.schedule[key.toLowerCase()] = schedule[key];
     }
-    
     calendarState.proId = proId;
     calendarState.selectedDate = null;
-    calendarState.selectedTime = null;
+    calendarState.selectedStartTime = null;
+    calendarState.selectedEndTime = null;
+    console.log(calendarState);
+    
 
     const modal = document.getElementById('booking-modal');
     modal.innerHTML = `
@@ -161,9 +193,10 @@ function renderDualCalendar() {
     const today = new Date();
     const dateLeft = new Date(calendarState.currentDate);
     dateLeft.setDate(1);
-    
+    console.log(dateLeft)
     const dateRight = new Date(dateLeft);
     dateRight.setMonth(dateRight.getMonth() + 1);
+    console.log(dateRight)
 
     document.getElementById('calendar-header-left').innerText = 
         dateLeft.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
@@ -214,7 +247,10 @@ function renderMonthGrid(dateObj, containerId) {
     for (let d = 1; d <= daysInMonth; d++) {
         const currentCheck = new Date(year, month, d);
         const dayName = daysEn[currentCheck.getDay()];
-        const dateStr = currentCheck.toISOString().split('T')[0];
+        const yearStr = currentCheck.getFullYear();
+        const monthStr = String(currentCheck.getMonth() + 1).padStart(2, '0');
+        const dayStr = String(currentCheck.getDate()).padStart(2, '0');
+        const dateStr = `${yearStr}-${monthStr}-${dayStr}`;
         
         const cell = document.createElement('div');
         cell.className = 'cal-cell day-cell';
@@ -248,15 +284,19 @@ function onDateSelect(dateStr, slots, cellElement) {
     cellElement.classList.add('selected');
     
     calendarState.selectedDate = dateStr;
-    calendarState.selectedTime = null;
+    calendarState.selectedStartTime = null;
+    calendarState.selectedEndTime = null;
     document.getElementById('btn-validate').disabled = true;
 
     const area = document.getElementById('slots-area');
     const display = document.getElementById('selected-date-display');
     const grid = document.getElementById('time-slots-grid');
     
-    area.style.display = 'block';
-    display.innerText = new Date(dateStr).toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    area.style.display = 'block';    
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const displayDate = new Date(y, m - 1, d);
+    display.innerText = displayDate.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+    
     grid.innerHTML = '';
 
     slots.forEach(range => {
@@ -266,10 +306,41 @@ function onDateSelect(dateStr, slots, cellElement) {
         while(start < end) {
             const timeVal = start.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
             
+            const currentSlotStart = new Date(`${dateStr}T${timeVal}:00`);
+            const currentSlotEnd = new Date(currentSlotStart.getTime() + 30*60000); 
+            
+            let isBooked = false;
+            
+            if (calendarState.booked && calendarState.booked.length > 0) {
+                for (let b of calendarState.booked) {
+                    let bStartStr = b.date_debut.replace(' ', 'T');
+                    let bEndStr = b.date_fin.replace(' ', 'T');
+                    
+                    let bStart = new Date(bStartStr);
+                    let bEnd = new Date(bEndStr);
+                    
+                    if (currentSlotStart < bEnd && currentSlotEnd > bStart) {
+                        isBooked = true;
+                        break;
+                    }
+                }
+            }
+
             const btn = document.createElement('button');
             btn.className = 'time-slot-pill';
             btn.innerText = timeVal;
-            btn.onclick = () => onTimeSelect(timeVal, btn);
+            
+            if (isBooked) {
+                btn.classList.add('disabled');
+                btn.disabled = true;
+                btn.title = "Déjà réservé";
+                btn.style.opacity = "0.5";
+                btn.style.cursor = "not-allowed";
+                btn.style.backgroundColor = "#e74c3c"; 
+            } else {
+                btn.onclick = () => onTimeSelect(timeVal, btn);
+            }
+            
             grid.appendChild(btn);
             
             start.setMinutes(start.getMinutes() + 30);
@@ -278,29 +349,58 @@ function onDateSelect(dateStr, slots, cellElement) {
 }
 
 function onTimeSelect(time, btn) {
-    calendarState.selectedTime = time;
-    document.querySelectorAll('.time-slot-pill').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (!calendarState.selectedStartTime || (calendarState.selectedStartTime && calendarState.selectedEndTime)) {
+        calendarState.selectedStartTime = time;
+        calendarState.selectedEndTime = null;
+    } else {
+        if (time < calendarState.selectedStartTime) {
+            calendarState.selectedStartTime = time;
+        } else if (time > calendarState.selectedStartTime) {
+            calendarState.selectedEndTime = time;
+        }
+    }
+    updateTimeSlotVisuals();
     
-    document.getElementById('btn-validate').disabled = false;
+    const isValid = calendarState.selectedStartTime && calendarState.selectedEndTime;
+    document.getElementById('btn-validate').disabled = !isValid;
+}
+
+function updateTimeSlotVisuals() {
+    const pills = document.querySelectorAll('.time-slot-pill');
+    const start = calendarState.selectedStartTime;
+    const end = calendarState.selectedEndTime;
+
+    pills.forEach(p => {
+        const time = p.innerText;
+        p.classList.remove('active');
+        
+        if (start && !end) {
+            if (time === start) p.classList.add('active');
+        } else if (start && end) {
+            if (time >= start && time <= end) p.classList.add('active');
+        }
+    });
 }
 
 async function submitBooking() {
-    if(!calendarState.selectedDate || !calendarState.selectedTime) return;
+    if(!calendarState.selectedDate || !calendarState.selectedStartTime || !calendarState.selectedEndTime) return;
 
-    const startDateTime = `${calendarState.selectedDate} ${calendarState.selectedTime}`;
+    const startDateTime = `${calendarState.selectedDate} ${calendarState.selectedStartTime}`;
+    const endDateTime = `${calendarState.selectedDate} ${calendarState.selectedEndTime}`;
+    
     const btn = document.getElementById('btn-validate');
     btn.innerText = "Traitement...";
     btn.disabled = true;
 
     try {
-        const response = await fetch('index.php?page=demande&action=store', {
+        const response = await fetch('index.php?page=demandes/store&action=store', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 client_id: 1, 
                 professionel_id: calendarState.proId,
-                start_datetime: startDateTime
+                start_datetime: startDateTime,
+                end_datetime: endDateTime
             })
         });
 

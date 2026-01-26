@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Legal Services Platform - Home</title>
     <link rel="stylesheet" href="src/Views/Public/style.css">
+    <!-- <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth'
+        });
+        calendar.render();
+      });
+
+    </script> -->
 </head>
-    <?php require_once "../src/Views/public/header.html" ?>
+<?php require_once "../src/Views/public/header.php" ?>
+
 <body>
     <main class="hero">
         <h1 class="hero-title">Legal Services Platform</h1>
@@ -25,21 +39,28 @@
                 <!-- test -->
             </a>
 
-            
+
             <a href="Statistiques" class="button-card">
                 <div class="button-icon">📊</div>
                 <div class="button-label">Statistics</div>
             </a>
-            
+
             <a href="Create" class="button-card amber">
                 <div class="button-icon">📋</div>
                 <div class="button-label">Ajouter Un Employee</div>
             </a>
+
+            <!-- <a href="Statistiques" class="button-card">
+                <div class="button-icon">📊</div>
+                <div class="button-label">Calendar</div>
+            </a> -->
         </div>
+        <!-- <div id='calendar'></div> -->
     </main>
 
     <footer>
         <p>&copy; 2026 LegalHub Platform. All rights reserved.</p>
     </footer>
 </body>
+
 </html>

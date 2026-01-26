@@ -3,10 +3,10 @@ namespace models ;
 use PDO;
 class Professionel extends User {
     protected bool $consultation_en_ligne ;
+    protected float $taarif;
     protected int $Annes_dex ;
     protected int $ville_id ;
-    protected int $id;
-    protected float $taarif;
+
     protected array $document;
     protected static \PDO $connection ;
     protected object $disponibilite;
@@ -16,7 +16,7 @@ class Professionel extends User {
         // $this->name = $name;
         
     }
-    public function getAll($tableName){
+public function getAll($tableName){
     $data = self::$connection -> query("SELECT * FROM $tableName") -> fetchAll(\PDO::FETCH_ASSOC);
     return $data ;
     }
@@ -68,17 +68,19 @@ class Professionel extends User {
     VALUES
     (:id,:field,:consultation_en_ligne,:annes_dex,:status,:taarif,:document,:Ville_id,:disponibilite)";
         $reprepare = $connection->prepare($sqlprp);
-        $ret = $reprepare->execute([
-            ':id' => $id,
-            ':field' => $field,
-            ':consultation_en_ligne' => $consultation_en_ligne,
-            ':annes_dex' => $annes_dex,
-            ':status' => $status,
-            ':taarif' => $taarif,
-            ':document' => $document,
-            ':Ville_id' => $Ville_id,
-            ':disponibilite' => $disponibilite
-            ]);
+
+            $reprepare->execute([
+                ':id' => $id,
+                ':field' => $field,
+                ':consultation_en_ligne' => $consultation_en_ligne,
+                ':annes_dex' => $annes_dex,
+                ':status' => $status,
+                ':taarif' => $taarif,
+                ':document' => $document,
+                ':Ville_id' => $Ville_id,
+                ':disponibilite' => $disponibilite
+                ]);
+
         }  
         }
 

@@ -299,7 +299,7 @@
 </head>
 
 <body>
-    <form action="ProfessionnelController" method="POST" enctype="multipart/form-data">
+    <form action="singup" method="POST">
         <div class="right">
             <div class="card">
                 <div class="container">
@@ -433,7 +433,7 @@
             </div>
         </div>
     </form>
-    <script src="form.js"></script>
+    <script src="../PHP-BREF4/src/Views/gestionprofessionnels/form.js"></script>
 </body>
 
 </html>

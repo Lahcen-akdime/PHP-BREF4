@@ -3,6 +3,7 @@
 namespace Controller;
 
 use models\Client;
+use models\Demande;
 use models\Ville;
 use Services\Database;
 use render\View;
@@ -12,12 +13,14 @@ class ClientController
     private $db;
     private $clientModel;
     private $villeModel;
+    private $demandeModel;
 
     public function __construct()
     {
         $this->db = Database::get_connection();
         $this->clientModel = new Client($this->db);
         $this->villeModel = new Ville($this->db);
+        $this->demandeModel = new Demande($this->db);
     }
 
     public function index()
@@ -55,27 +58,37 @@ class ClientController
     }
     public function getAvailability()
     {
-
         header("Content-Type: application/json");
-        $id = $_GET['id'] ?? null;
-        if ($id) {
-            $data = $this->clientModel->getProfessionalById($id);
-            if ($data) {
-                echo json_encode($data['disponibilite']);
+        try {
+            $id = $_GET['id'] ?? null;
+            if ($id) {
+                $data = $this->clientModel->getProfessionalById($id);
+                $booked = $this->demandeModel->getAcceptedByProfessional($id);
+
+                if ($data) {
+                    echo json_encode([
+                        'schedule' => $data['disponibilite'],
+                        'booked' => $booked
+                    ]);
+                } else {
+                    echo json_encode(['error' => 'Professional not found']);
+                }
+            } else {
+                echo json_encode(['error' => 'No ID provided']);
             }
+        } catch (\Throwable $e) {
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
         }
     }
-}
 
-$controller = new ClientController();
-if (isset($_GET['action'])) {
-    if ($_GET['action'] === 'search') {
-        $controller->search();
-    } elseif ($_GET['action'] === 'getAvailability') {
-        $controller->getAvailability();
-    } else {
-        $controller->index();
+    public function history()
+    {
+        $clientId = 9;
+        $history = $this->clientModel->getHistory($clientId);
+
+        View::render('Client/history/index', [
+            'history' => $history
+        ]);
     }
-} else {
-    $controller->index();
 }

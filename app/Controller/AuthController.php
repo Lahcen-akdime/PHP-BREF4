@@ -1,27 +1,69 @@
 <?php
+namespace Controller;
+Use Services\Database;
+use render\View;
+use Services\AuthValidation;
+use models\Repository\UserRepository;
 class AuthController{
-    public static function Login()
-    {
-        require "..\src\Views\authentification\Login.php";
+
+    public static function index() {
+    header("Location:/PHP-BREF4/auth/login");
+    exit;
     }
 
-    public static function SignUp()
+    public static function login()
     {
-        require "..\src\Views\authentification\SignUP.php";
+    if (isset($_SESSION['role'])) {
+        header("Location:/PHP-BREF4/home");
+        exit;
+    }
+        if(isset($_POST['submitLogin'])){
+        $validation = new AuthValidation;
+        $resu = $validation->ValidationLogin();
+        if($resu){
+        header("Location:/PHP-BREF4/home");
+        exit;
+        }
+        }
+        
+        View::render('authentification/Login');
+
     }
 
-    public static function LogOut()
+    public static function signUp()
     {
-        require "..\src\Views\authentification\Login.php";
+        if(isset($_POST['submitSignup'])){
+            $validation = new AuthValidation;
+            $resu = $validation->ValidationsignUp();
+            if(isset($resu)){
+            $con = Database::get_connection();
+            $sendData = new UserRepository($con);
+            $rs = $sendData->creat($resu);
+            if($rs){
+        header("Location:/PHP-BREF4/auth/login");
+            }
+            }    
+            }
+            View::render('authentification/signup');
+
     }
-    public static function Form()
+
+    public static function logOut()
     {
-        require "..\src\Views\authentification\FormChoix.php";
+        session_unset();
+        session_destroy();
+        header("location:Login");
     }
-    public static function FormDire()
+    public static function form()
     {
-        if(isset($_POST['role']) == 'CLIENT'){
-            header('location:/PHP-BREF4/Auth/Login');
+        View::render('authentification/FormChoix');
+    }
+    public static function formDire()
+    {
+        if(isset($_POST['role']) && $_POST['role'] == 'client'){
+            $_SESSION['role'] = $_POST['role'];
+            header('location:/PHP-BREF4/Auth/signup');
+            exit;
         }else{
             header('location:/PHP-BREF4/Auth/Pro');
         } 
