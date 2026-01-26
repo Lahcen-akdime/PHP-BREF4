@@ -8,7 +8,7 @@ class Roles
         "home" => ["avocat", "huissier", "client", "admin"],
         "huissier" => ["huissier", "admin"],
         "dashboard" => ["admin"],
-        "statistiques" => ["admin"],
+        "statistiques" => ["admin","avocat", "huissier"],
         "create" => ["admin"],
         "deleteAvocat" => ["admin"],
         "deleteHuissier" => ["admin"],

@@ -7,7 +7,7 @@
     <title>Demandes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../src/Views/Public/style.css">
+    <link rel="stylesheet" href="/PHP-BREF4/src/Views/Public/style.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
