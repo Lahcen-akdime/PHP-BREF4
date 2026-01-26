@@ -65,8 +65,8 @@ class AuthController{
             header('location:/PHP-BREF4/Auth/signup');
             exit;
         }else{
-            header('location:/PHP-BREF4/Auth/Pro');
-        }
+            header('location:/PHP-BREF4/singup');
+        } 
     }
 
   

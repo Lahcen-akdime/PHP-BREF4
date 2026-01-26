@@ -29,7 +29,8 @@ class Routing
         "auth" => "AuthController",
         "form" => "AuthController",
         "client" => "ClientController",
-        "demandes" => "DemandeController"
+        "demandes" => "DemandeController",
+        "singup"=>"ProfessionnelController"
     ];
 
     public static function dispatch()
