@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   async function getData() {
     let response = await fetch("http://localhost/PHP-BREF4/json&get");
     let data = await response.json();
+    console.log('ok');
     return data ;
   }
   let data = await getData();

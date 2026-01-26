@@ -54,7 +54,7 @@ class DemandeController
         }
     }
     public static function goToCalendar(){
-         View::render('Professionel\Calendar',[]);
+         View::render('Professionel\Calender\calender',[]);
     }
 
     public function accept()
