@@ -2,6 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+            <link rel="stylesheet" href="/PHP-BREF4/src/Views/Public/style.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Avocat</title>
     <style>
@@ -261,6 +263,7 @@
         }
     </style>
 </head>
+<?php require_once __DIR__ . "/../Public/header.php" ?>
 <body>
     <div class="container">
         <header>
